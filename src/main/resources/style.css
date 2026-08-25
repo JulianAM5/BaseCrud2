@@ -1,8 +1,7 @@
 .custom-mini-scrollPane {
     -fx-pref-width: 580px;
 
-    -fx-min-height: 300px;
-    -fx-pref-height: 300px;
+    -fx-pref-height: 250px;
 }
 
 .custom-background {
@@ -12,4 +11,13 @@
 .custom-add-button {
     -fx-background-color: green;
     -fx-pref-width: 600px;
+    -fx-pref-height: 40px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
 }
