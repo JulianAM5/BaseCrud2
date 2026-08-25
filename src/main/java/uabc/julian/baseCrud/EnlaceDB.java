@@ -54,6 +54,35 @@ public class EnlaceDB {
         }
     }
 
+    public ArrayList<Direccion> RecuperarDirecciones() {
+        try {
+            ArrayList<Direccion> direcciones = new ArrayList<>();
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Direcciones");
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String direccionTex = rs.getString("direccion");
+
+                Direccion direccion = new Direccion(id, direccionTex);
+
+                direcciones.add(direccion);
+            }
+
+            rs.close();
+            return direcciones;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
     public Persona RecuperarPersona(int id) {
         try {
             String sqlInstruccion = "SELECT nombre FROM Personas where id = ?";
@@ -192,7 +221,6 @@ public class EnlaceDB {
 
     public void CerrarConexion() {
         try {
-            if (rs != null) rs.close();
             if (stmt != null) stmt.close();
             if (conn != null) conn.close();
         } catch (SQLException se) {
