@@ -23,6 +23,7 @@ public class PersonaFullView extends VBox implements OnDataBaseChangeListener {
     private Controlador controlador;
     private int id;
     private String nombre;
+    private Label nombreLabel;
 
     public PersonaFullView(Controlador controlador, int id, String nombre) {
         this.controlador = controlador;
@@ -33,9 +34,11 @@ public class PersonaFullView extends VBox implements OnDataBaseChangeListener {
     }
 
     private void setLayout() {
+        getChildren().clear();
+
         HBox top = new HBox();
         
-        Label nombreLabel = new Label(nombre);
+        nombreLabel = new Label(nombre);
         Button editarNombre = new Button("Editar");
 
         Button cerrarButton = new Button("\u274C");
@@ -53,7 +56,7 @@ public class PersonaFullView extends VBox implements OnDataBaseChangeListener {
         setTelefonos(telefonosSPane, id);
         setDirecciones(direccionesSPane, id);
 
-        editarNombre.setOnAction(e -> {});
+        editarNombre.setOnAction(e -> { controlador.abrirPanel(new EditarView(controlador, id, EditarView.Tipo.PERSONA));});
         cerrarButton.setOnAction(e -> { controlador.cerrarPanel(this); });
         agregarTelefonoButton.setOnAction(e -> {});
         agregarDireccionButton.setOnAction(e -> {});
@@ -105,7 +108,9 @@ public class PersonaFullView extends VBox implements OnDataBaseChangeListener {
     }
 
 	@Override
-	public void OnDataBaseChanged() {
+	public void OnDataBaseChanged(String newValue, int tipo) {
         setLayout();
+
+        if (tipo == 0) { nombreLabel.setText(newValue); }
 	}
 }

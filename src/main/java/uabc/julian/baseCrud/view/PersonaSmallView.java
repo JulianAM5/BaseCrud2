@@ -32,7 +32,7 @@ public class PersonaSmallView extends HBox {
 
         borrarButton.setOnAction(e -> {
             if (controlador.solicitarEliminarPersona(id)) {
-                controlador.InvokeOnDataBaseChanged();
+                controlador.InvokeOnDataBaseChanged("", -1);
             }
         });
 

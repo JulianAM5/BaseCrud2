@@ -19,7 +19,7 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
 
     private Controlador controlador;
     private ScrollPane scrollPane;
-    private int tipo;
+    private int tipoDato;
 
     public Preview(Controlador controlador) {
         this.controlador = controlador;
@@ -28,6 +28,7 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
     }
 
     private void setLayout() {
+        getChildren().clear();
         Label tituloLabel = new Label("REGISTRO");
 
         scrollPane = new ScrollPane();
@@ -45,7 +46,7 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
     }
 
     public void cargarPersonas() {
-        tipo = 1;
+        tipoDato = 1;
         ArrayList<Persona> personas = controlador.solicitarPersonas();
         VBox holder = new VBox();
 
@@ -59,7 +60,7 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
     }
 
     public void cargarDirecciones() {
-        tipo = 2;
+        tipoDato = 2;
         ArrayList<Direccion> direcciones = controlador.solicitarDirecciones();
         VBox holder = new VBox();
 
@@ -73,8 +74,8 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
     }
 
 	@Override
-	public void OnDataBaseChanged() {
-        if (tipo == 1) {
+	public void OnDataBaseChanged(String newValue, int tipo) {
+        if (tipoDato == 1) {
             cargarPersonas();
         } else {
             cargarDirecciones();
