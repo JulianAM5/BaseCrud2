@@ -204,20 +204,70 @@ public class EnlaceDB {
         }
     }
 
-    public boolean AñadirPersona(Persona persona) {
+    public boolean AñadirPersona(String nombre) {
+        try {
+            String sqlInstruccion = "INSERT INTO Personas (nombre) VALUES (?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
+            ps.setString(1, nombre);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
     }
 
-    public boolean AñadirDireccion(Direccion direccion) {
+    public boolean AñadirDireccion(String direccion) {
+        try {
+            String sqlInstruccion = "INSERT INTO Direcciones (direccion) VALUES (?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
+            ps.setString(1, direccion);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
     }
 
     public boolean AñadirTelefono(int personaId, String telefono) {
+        try {
+            String sqlInstruccion = "INSERT INTO Telefonos (personaId, telefono) VALUES (?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
+            ps.setInt(1, personaId);
+            ps.setString(2, telefono);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
     }
 
     public boolean AsociarPersonaDireccion(int personaId, int direccionId) {
+        try {
+            String sqlInstruccion = "INSERT INTO Personas_Direcciones (personaId, direccionId) VALUES (?, ?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
+            ps.setInt(1, personaId);
+            ps.setInt(2, direccionId);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
     }
 
     public boolean EliminarTelefono(int personaId, String telefono) {
