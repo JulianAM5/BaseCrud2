@@ -204,6 +204,22 @@ public class EnlaceDB {
         }
     }
 
+    public boolean AñadirPersona(Persona persona) {
+
+    }
+
+    public boolean AñadirDireccion(Direccion direccion) {
+
+    }
+
+    public boolean AñadirTelefono(int personaId, String telefono) {
+
+    }
+
+    public boolean AsociarPersonaDireccion(int personaId, int direccionId) {
+
+    }
+
     public boolean EliminarTelefono(int personaId, String telefono) {
         try {
             String sqlInstruccion = "DELETE FROM Telefonos WHERE personaId = ?, telefono = ?";
@@ -241,6 +257,22 @@ public class EnlaceDB {
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
             ps.setInt(1, personaId);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean DeshacerAsociacionPersonaDireccion(int personaId, int direccionId) {
+        try {
+            String sqlInstruccion = "DELETE FROM Personas_Direcciones WHERE personaId = ?, direccionId = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, personaId);
+            ps.setInt(2, direccionId);
             ps.executeUpdate();
             ps.close();
             return true;
