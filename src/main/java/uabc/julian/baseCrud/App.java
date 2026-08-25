@@ -5,6 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import uabc.julian.baseCrud.view.DireccionFullView;
+import uabc.julian.baseCrud.view.MainTabs;
 import uabc.julian.baseCrud.view.PersonaFullView;
 
 /**
@@ -14,13 +16,15 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
         StackPane root = new StackPane();
-        Controlador controlador = new Controlador();
+        root.getStyleClass().add("custom-background");
+        Controlador controlador = new Controlador(root);
 
-        root.getChildren().add(new PersonaFullView(controlador, 1, ""));
 
+        root.getChildren().add(new MainTabs(controlador));
         Scene scene = new Scene(root, 600, 800);
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 	}
 }
