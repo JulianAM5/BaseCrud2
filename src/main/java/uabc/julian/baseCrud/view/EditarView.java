@@ -43,22 +43,28 @@ public class EditarView extends VBox{
         switch (tipo) {
             case PERSONA:
                 button.setOnAction(e -> {
-                    if (controlador.solicitarModificarNombre(id, textField.getText())) {
+                    if (controlador.solicitarModificarNombre(id, textField.getText()) && !textField.getText().isEmpty()) {
                         controlador.cerrarPanel(this);
+                    } else {
+
                     }
                 });
                 break;
             case DIRECCION:
                 button.setOnAction(e -> {
-                    if (controlador.solicitarModificarDireccion(id, textField.getText())) {
+                    if (controlador.solicitarModificarDireccion(id, textField.getText()) && !textField.getText().isEmpty()) {
                         controlador.cerrarPanel(this);
+                    } else {
+
                     }
                 });
                 break;
             case TELEFONO:
                 button.setOnAction(e -> {
-                    if(controlador.solicitarModificarTelefono(id, textField.getText())) {
+                    if(controlador.solicitarModificarTelefono(id, textField.getText()) && !textField.getText().isEmpty()) {
                         controlador.cerrarPanel(this);
+                    } else {
+
                     }
                 });
                 break;
