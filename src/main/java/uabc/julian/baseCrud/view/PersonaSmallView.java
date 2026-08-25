@@ -27,11 +27,13 @@ public class PersonaSmallView extends HBox {
         Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
-
+            controlador.abrirPanel(new PersonaFullView(controlador, id, nombre));
         });
 
         borrarButton.setOnAction(e -> {
-
+            if (controlador.solicitarEliminarPersona(id)) {
+                controlador.InvokeOnDataBaseChanged();
+            }
         });
 
         personaLabel.getStyleClass().add("custom-label-smallView");

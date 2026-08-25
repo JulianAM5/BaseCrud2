@@ -31,7 +31,9 @@ public class DireccionSmallView extends HBox {
         });
 
         borrarButton.setOnAction(e -> {
-
+           if(controlador.solicitarEliminarDireccion(id)) {
+               controlador.InvokeOnDataBaseChanged();
+           }
         });
 
         direccionLabel.getStyleClass().add("custom-label-smallView");

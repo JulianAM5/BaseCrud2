@@ -31,7 +31,9 @@ public class TelefonoSmallView extends HBox {
         });
 
         borrarButton.setOnAction(e -> {
-
+            if (controlador.solicitarEliminarTelefono(personaId, telefono)) {
+                controlador.InvokeOnDataBaseChanged();
+            }
         });
  
         telefonoLabel.getStyleClass().add("custom-label-smallView");

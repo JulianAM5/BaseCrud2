@@ -15,13 +15,15 @@ import uabc.julian.baseCrud.data.Persona;
 /**
  * Preview
  */
-public class Preview extends VBox {
+public class Preview extends VBox implements OnDataBaseChangeListener {
 
     private Controlador controlador;
     private ScrollPane scrollPane;
+    private int tipo;
 
     public Preview(Controlador controlador) {
         this.controlador = controlador;
+        controlador.addOnDataBaseListener(this);
         setLayout();
     }
 
@@ -43,6 +45,7 @@ public class Preview extends VBox {
     }
 
     public void cargarPersonas() {
+        tipo = 1;
         ArrayList<Persona> personas = controlador.solicitarPersonas();
         VBox holder = new VBox();
 
@@ -56,6 +59,7 @@ public class Preview extends VBox {
     }
 
     public void cargarDirecciones() {
+        tipo = 2;
         ArrayList<Direccion> direcciones = controlador.solicitarDirecciones();
         VBox holder = new VBox();
 
@@ -67,4 +71,13 @@ public class Preview extends VBox {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(holder);
     }
+
+	@Override
+	public void OnDataBaseChanged() {
+        if (tipo == 1) {
+            cargarPersonas();
+        } else {
+            cargarDirecciones();
+        }
+	}
 }
