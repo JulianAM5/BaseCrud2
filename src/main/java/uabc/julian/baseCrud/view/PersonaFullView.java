@@ -58,8 +58,8 @@ public class PersonaFullView extends VBox implements OnDataBaseChangeListener {
 
         editarNombre.setOnAction(e -> { controlador.abrirPanel(new EditarView(controlador, id, EditarView.Tipo.PERSONA));});
         cerrarButton.setOnAction(e -> { controlador.cerrarPanel(this); });
-        agregarTelefonoButton.setOnAction(e -> {});
-        agregarDireccionButton.setOnAction(e -> {});
+        agregarTelefonoButton.setOnAction(e -> { controlador.abrirPanel(new agregarTelefonoView(controlador, id));});
+        agregarDireccionButton.setOnAction(e -> { controlador.abrirPanel(new agregarDireccionView(controlador, id));});
 
         nombreLabel.getStyleClass().add("custom-title");
         editarNombre.getStyleClass().add("custom-edit-smallButton");

@@ -11,6 +11,7 @@ import uabc.julian.baseCrud.Controlador;
 public class PersonaSmallView extends HBox {
     
     private Controlador controlador;
+    private Button editarButton;
 
     public PersonaSmallView(Controlador controlador, int id, String nombre) {
         this.controlador = controlador;
@@ -23,7 +24,7 @@ public class PersonaSmallView extends HBox {
 
         Label personaLabel = new Label(nombre);
 
-        Button editarButton = new Button("Editar");
+        editarButton = new Button("Editar");
         Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
@@ -42,5 +43,9 @@ public class PersonaSmallView extends HBox {
 
         getStyleClass().add("custom-smallView");
         getChildren().addAll(personaLabel, editarButton, borrarButton);
+    }
+
+    public void desactivarEdicion(boolean bool) {
+        editarButton.setDisable(bool);
     }
 }

@@ -27,12 +27,12 @@ public class TelefonoSmallView extends HBox {
         Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
-
+            controlador.abrirPanel(new EditarView(controlador, personaId, EditarView.Tipo.TELEFONO));
         });
 
         borrarButton.setOnAction(e -> {
             if (controlador.solicitarEliminarTelefono(personaId, telefono)) {
-                controlador.InvokeOnDataBaseChanged();
+                controlador.InvokeOnDataBaseChanged("", -1);
             }
         });
  

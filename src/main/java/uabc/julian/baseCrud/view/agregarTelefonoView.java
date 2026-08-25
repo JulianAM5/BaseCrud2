@@ -40,6 +40,7 @@ public class agregarTelefonoView extends VBox {
             }
 
             if (controlador.solicitarAñadirTelefono(personaId, inputField.getText())) {
+                controlador.InvokeOnDataBaseChanged("", -1);
                 controlador.cerrarPanel(this);
             }
         });

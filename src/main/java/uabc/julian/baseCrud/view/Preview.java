@@ -20,6 +20,7 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
     private Controlador controlador;
     private ScrollPane scrollPane;
     private int tipoDato;
+    private Button agregarButton;
 
     public Preview(Controlador controlador) {
         this.controlador = controlador;
@@ -33,7 +34,7 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
 
         scrollPane = new ScrollPane();
 
-        Button agregarButton = new Button("Agregar");
+        agregarButton = new Button("Agregar");
 
         tituloLabel.getStyleClass().add("custom-title");
         scrollPane.getStyleClass().add("custom-full-scrollPane");
@@ -50,6 +51,10 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
         ArrayList<Persona> personas = controlador.solicitarPersonas();
         VBox holder = new VBox();
 
+        agregarButton.setOnAction(e -> {
+            controlador.abrirPanel(new agregarPersonaView(controlador));
+        });
+
         for (Persona persona : personas) {
             holder.getChildren().add(new PersonaSmallView(controlador, persona.getId(), persona.getNombre()));
         }
@@ -63,6 +68,10 @@ public class Preview extends VBox implements OnDataBaseChangeListener {
         tipoDato = 2;
         ArrayList<Direccion> direcciones = controlador.solicitarDirecciones();
         VBox holder = new VBox();
+
+        agregarButton.setOnAction(e -> {
+            controlador.abrirPanel(new agregarDireccionView(controlador, -1));
+        });
 
         for (Direccion direccion : direcciones) {
             holder.getChildren().add(new DireccionSmallView(controlador, direccion.getId(), direccion.getDireccion()));

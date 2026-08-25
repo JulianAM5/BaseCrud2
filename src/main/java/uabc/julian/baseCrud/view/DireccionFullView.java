@@ -47,7 +47,7 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
 
         setPersonas(personasSPane, id);
 
-        editarDireccion.setOnAction(e -> {});
+        editarDireccion.setOnAction(e -> { controlador.abrirPanel(new EditarView(controlador, id, EditarView.Tipo.DIRECCION));});
         cerrarButton.setOnAction(e -> { controlador.cerrarPanel(this); });
         agregarPersonaButton.setOnAction(e -> {});
 
@@ -70,7 +70,9 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
         VBox holder = new VBox();
 
         for (Persona persona : personas) {
-            holder.getChildren().add(new PersonaSmallView(controlador, persona.getId(), persona.getNombre()));
+            PersonaSmallView personaSmallView = new PersonaSmallView(controlador, persona.getId(), persona.getNombre());
+            personaSmallView.desactivarEdicion(true);
+            holder.getChildren().add(personaSmallView);
         }
 
         holder.setSpacing(3);

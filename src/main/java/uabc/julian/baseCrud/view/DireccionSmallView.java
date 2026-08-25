@@ -27,12 +27,12 @@ public class DireccionSmallView extends HBox {
         Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
-
+            controlador.abrirPanel(new DireccionFullView(controlador, id, direccion));
         });
 
         borrarButton.setOnAction(e -> {
            if(controlador.solicitarEliminarDireccion(id)) {
-               controlador.InvokeOnDataBaseChanged();
+               controlador.InvokeOnDataBaseChanged("", -1);
            }
         });
 
