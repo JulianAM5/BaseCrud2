@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import jdk.jfr.Enabled;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
+import uabc.julian.baseCrud.view.LoginView;
+import uabc.julian.baseCrud.view.MainTabs;
 import uabc.julian.baseCrud.view.OnDataBaseChangeListener;
 
 /**
@@ -16,13 +17,15 @@ import uabc.julian.baseCrud.view.OnDataBaseChangeListener;
 public class Controlador {
 
     private StackPane root;
+    private LoginView loginView;
     private ArrayList<OnDataBaseChangeListener> listeners;
     private EnlaceDB enlaceDB;
 
     public Controlador(StackPane root) {
         this.root = root;
         listeners = new ArrayList<>();
-        enlaceDB = new EnlaceDB();
+        loginView = new LoginView(this);
+        abrirPanel(loginView);
     }
 
     public void abrirPanel(Pane pane) {
@@ -109,5 +112,12 @@ public class Controlador {
         for (int i = 0; i < listeners.size(); i++) {
             listeners.get(i).OnDataBaseChanged(newValue, tipo);
         }
+    }
+
+    public void setDB(EnlaceDB enlaceDB) {
+        this.enlaceDB = enlaceDB;
+
+        root.getChildren().add(new MainTabs(this));
+        cerrarPanel(loginView);
     }
 }

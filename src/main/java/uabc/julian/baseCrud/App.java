@@ -19,8 +19,6 @@ public class App extends Application {
         root.getStyleClass().add("custom-background");
         Controlador controlador = new Controlador(root);
 
-
-        root.getChildren().add(new MainTabs(controlador));
         Scene scene = new Scene(root, 600, 800);
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);

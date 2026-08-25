@@ -14,14 +14,15 @@ import uabc.julian.baseCrud.data.Telefono;
 public class EnlaceDB {
     // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mariadb://localhost:3306/agenda_2";
-    private static final String USER = "usuario1";
-    private static final String PASSWORD = "superpassword";
+    private String USER = "usuario1";
+    private String PASSWORD = "superpassword";
 
     Connection conn = null;
     Statement stmt = null;
 
-    public EnlaceDB() {
-        ConectarAServidor();
+    public EnlaceDB(String USER, String PASSWORD) {
+        this.USER = USER;
+        this.PASSWORD = PASSWORD;
     }
 
     public ArrayList<Persona> RecuperarPersonas() {
@@ -440,7 +441,7 @@ public class EnlaceDB {
         }
     }
 
-    public void ConectarAServidor() {
+    public boolean ConectarAServidor() {
         try {
             // 1. Registrar el driver JDBC
             Class.forName("org.mariadb.jdbc.Driver");
@@ -448,10 +449,13 @@ public class EnlaceDB {
             // 2. Establecer la conexión
             System.out.println("Conectando a la base de datos...");
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            return true;
         } catch (SQLException se) {
             se.printStackTrace();
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         } 
     }
 
