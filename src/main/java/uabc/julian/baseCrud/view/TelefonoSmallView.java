@@ -15,14 +15,15 @@ public class TelefonoSmallView extends HBox {
     public TelefonoSmallView(Controlador controlador, int personaId, String telefono) {
         this.controlador = controlador;
 
+        setMaxWidth(Double.MAX_VALUE);
         setTelefonoSmallView(personaId, telefono);
     }
 
     private void setTelefonoSmallView(int personaId, String telefono) {
         Label telefonoLabel = new Label(telefono);
 
-        Button editarButton = new Button();
-        Button borrarButton = new Button();
+        Button editarButton = new Button("Editar");
+        Button borrarButton = new Button("Borrar");
 
         editarButton.setOnAction(e -> {
 
@@ -31,7 +32,12 @@ public class TelefonoSmallView extends HBox {
         borrarButton.setOnAction(e -> {
 
         });
-
+ 
+        telefonoLabel.getStyleClass().add("custom-label-smallView");
+        editarButton.getStyleClass().add("custom-edit-smallButton");
+        borrarButton.getStyleClass().add("custom-delete-smallButton");
         getChildren().addAll(telefonoLabel, editarButton, borrarButton);
+
+        getStyleClass().add("custom-smallView");
     }
 }

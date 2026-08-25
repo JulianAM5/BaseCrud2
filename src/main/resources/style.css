@@ -17,7 +17,41 @@
     -fx-font-size: 15px;
 }
 
-.label {
+.custom-smallView {
+    -fx-background-color: linear-gradient(#f9f9f9, #e8e8e8);
+    -fx-padding: 5;
+    -fx-spacing: 5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #c0c0c0;
+    -fx-border-width: 1;
+
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 1);
+    -fx-cursor: hand;
+}
+
+.custom-label-smallView {
+    -fx-font-weight: normal;
+    -fx-font-size: 15px;
+    -fx-background-color:yellow;
+    -fx-pref-width: 430px;
+}
+
+.custom-edit-smallButton {
+    -fx-background-color: linear-gradient(#4A90D9, #357ABD);
+    -fx-pref-width: 60px;
+    -fx-text-fill: white;
+}
+
+.custom-delete-smallButton {
+    -fx-background-color: linear-gradient(#E74C3C, #C0392B);
+    -fx-pref-width: 60px;
+    -fx-text-fill: white;
+}
+
+.custom-title {
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
+
+

@@ -21,8 +21,8 @@ public class DireccionSmallView extends HBox {
     private void setDireccionSmallView(int id, String direccion) {
         Label direccionLabel = new Label(direccion);
 
-        Button editarButton = new Button();
-        Button borrarButton = new Button();
+        Button editarButton = new Button("Editar");
+        Button borrarButton = new Button("Borrar");
 
         editarButton.setOnAction(e -> {
 
@@ -32,6 +32,12 @@ public class DireccionSmallView extends HBox {
 
         });
 
+        direccionLabel.getStyleClass().add("custom-label-smallView");
+        editarButton.getStyleClass().add("custom-edit-smallButton");
+        borrarButton.getStyleClass().add("custom-delete-smallButton");
+
         getChildren().addAll(direccionLabel, editarButton, borrarButton);
+
+        getStyleClass().add("custom-smallView");
     }
 }
