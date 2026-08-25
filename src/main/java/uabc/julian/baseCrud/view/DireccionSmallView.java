@@ -24,7 +24,7 @@ public class DireccionSmallView extends HBox {
         Label direccionLabel = new Label(direccion);
 
         Button editarButton = new Button("Editar");
-        Button borrarButton = new Button("Borrar");
+        Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
 

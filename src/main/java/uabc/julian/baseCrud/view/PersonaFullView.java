@@ -33,7 +33,7 @@ public class PersonaFullView extends VBox {
         Label nombreLabel = new Label(nombre);
         Button editarNombre = new Button("Editar");
 
-        Button cerrarButton = new Button("X");
+        Button cerrarButton = new Button("\u274C");
 
         top.getChildren().addAll(nombreLabel, cerrarButton);
 
@@ -60,7 +60,7 @@ public class PersonaFullView extends VBox {
         agregarDireccionButton.getStyleClass().add("custom-add-button");
         direccionesSPane.getStyleClass().add("custom-mini-scrollPane");
         telefonosSPane.getStyleClass().add("custom-mini-scrollPane");
-        cerrarButton.getStyleClass().add("custom-cerrar-button");
+        cerrarButton.getStyleClass().add("custom-delete-smallButton");
 
         telefonosLabel.setPadding(new Insets(40, 0, 0, 0));
         direccionesLabel.setPadding(new Insets(40, 0, 0, 0));
@@ -89,7 +89,7 @@ public class PersonaFullView extends VBox {
         VBox holder = new VBox();
 
         for (Direccion direccion : direcciones) {
-            holder.getChildren().add(new DireccionSmallView(controlador, personaId, direccion.getDireccion()));
+            holder.getChildren().add(new DireccionSmallView(controlador, direccion.getId(), direccion.getDireccion()));
         }
 
         holder.setSpacing(3);

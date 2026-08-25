@@ -23,8 +23,8 @@ public class PersonaSmallView extends HBox {
 
         Label personaLabel = new Label(nombre);
 
-        Button editarButton = new Button();
-        Button borrarButton = new Button();
+        Button editarButton = new Button("Editar");
+        Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
 
@@ -38,6 +38,7 @@ public class PersonaSmallView extends HBox {
         editarButton.getStyleClass().add("custom-edit-smallButton");
         borrarButton.getStyleClass().add("custom-delete-smallButton");
 
+        getStyleClass().add("custom-smallView");
         getChildren().addAll(personaLabel, editarButton, borrarButton);
     }
 }

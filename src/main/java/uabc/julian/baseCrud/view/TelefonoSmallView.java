@@ -24,7 +24,7 @@ public class TelefonoSmallView extends HBox {
         Label telefonoLabel = new Label(telefono);
 
         Button editarButton = new Button("Editar");
-        Button borrarButton = new Button("Borrar");
+        Button borrarButton = new Button("\u274C");
 
         editarButton.setOnAction(e -> {
 

@@ -71,9 +71,15 @@
 .custom-label-smallView {
     -fx-font-weight: normal;
     -fx-font-size: 15px;
-    -fx-background-color:yellow;
-    -fx-pref-width: 430px;
+    -fx-pref-width: 460px;
     -fx-wrap-text: true;
+}
+
+.custom-smallView:hover {
+    -fx-background-color: linear-gradient(
+        rgba(249, 249, 249, 0.4), 
+        rgba(232, 232, 232, 0.4)
+    );
 }
 
 .custom-edit-smallButton {
@@ -84,7 +90,7 @@
 
 .custom-delete-smallButton {
     -fx-background-color: linear-gradient(#E74C3C, #C0392B);
-    -fx-pref-width: 60px;
+    -fx-pref-width: 30px;
     -fx-text-fill: white;
 }
 
