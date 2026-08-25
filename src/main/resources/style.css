@@ -41,7 +41,7 @@
 }
 
 .custom-add-button {
-    -fx-background-color: green;
+    -fx-background-color: linear-gradient(#2ECC71, #27AE60);
     -fx-pref-width: 600px;
     -fx-pref-height: 40px;
     -fx-text-fill: white;
@@ -100,4 +100,46 @@
     -fx-font-size: 20px;
 }
 
+.vbox {
+    -fx-background-color: linear-gradient(#F5F5F5, #F0F2F5);
 
+}
+
+.custom-edit-window {
+    -fx-background-color: linear-gradient(#F5F5F5, #F0F2F5);
+    -fx-pref-width: 300px;
+    -fx-pref-height: 300px;
+    -fx-max-width: 300px;
+    -fx-max-height: 300px;
+    -fx-alignment: center;
+    
+    -fx-border-color: #2C3E50;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 0);
+    
+    -fx-padding: 10px;
+}
+
+.custom-edit-window > .viewport {
+    -fx-border-radius: 8px;
+}
+
+.custom-confirm-button {
+    -fx-background-color: linear-gradient(#2ECC71, #27AE60);
+    -fx-text-fill: white;
+    -fx-pref-width: 85px;
+}
+
+.custom-cancel-button {
+    -fx-background-color: linear-gradient(#E74C3C, #C0392B);
+    -fx-text-fill: white;
+    -fx-pref-width: 85px;
+}
+
+.custom-text {
+    -fx-color: black;
+    -fx-font-size: 12px;
+    -fx-font-weight:bold;
+}
