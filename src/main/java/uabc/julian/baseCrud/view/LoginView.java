@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -25,7 +26,7 @@ public class LoginView extends VBox {
         Label contraseñaLabel = new Label("Contraseña");
 
         TextField usuarioField = new TextField();
-        TextField contraseñaField = new TextField();
+        PasswordField contraseñaField = new PasswordField();
         
         Button loginButton = new Button("Iniciar Sesión");
         usuarioLabel.getStyleClass().add("custom-text");
@@ -50,7 +51,7 @@ public class LoginView extends VBox {
         loginButton.getStyleClass().add("custom-login-button");
         getStyleClass().add("vbox");
         usuarioField.getStyleClass().add("custom-field");
-        contraseñaField.getStyleClass().add("custom-password");
+        contraseñaField.getStyleClass().add("custom-field");
 
         getChildren().addAll(usuarioLabel, usuarioField, contraseñaLabel, contraseñaField, loginButton);
         setAlignment(Pos.CENTER);
