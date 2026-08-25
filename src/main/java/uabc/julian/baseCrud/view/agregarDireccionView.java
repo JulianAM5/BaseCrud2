@@ -41,6 +41,7 @@ public class agregarDireccionView extends VBox{
 
             if (personaId == -1) {
                 if(controlador.solicitarAñadirDireccion(inputField.getText())) {
+                    controlador.InvokeOnDataBaseChanged("", -1);
                     controlador.cerrarPanel(this);
                 }
 

@@ -11,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import uabc.julian.baseCrud.Controlador;
+import uabc.julian.baseCrud.EnlaceDB;
 import uabc.julian.baseCrud.data.Direccion;
 
 /**
@@ -48,9 +49,30 @@ public class agregarPersonaView extends VBox{
 
             @Override
             public Direccion fromString(String string) {
-                // Usually not needed for ChoiceBox, but required by the interface
                 return null;
             }
+        });
+
+        confirmarButton.setOnAction(e -> {
+            if (inputNombre.getText().isEmpty()) { return; }
+
+            if (direcciones.getValue() == null) {
+                if (controlador.solicitarAñadirPersona(inputNombre.getText())) {
+                    controlador.InvokeOnDataBaseChanged("", -1);
+                    controlador.cerrarPanel(this);
+                }
+
+                return;
+            }
+
+            if (controlador.solicitarAñadirPersona(inputNombre.getText(), direcciones.getValue().getId())) {
+                controlador.InvokeOnDataBaseChanged("", -1);
+                controlador.cerrarPanel(this);
+            }
+        });
+
+        cancelarButton.setOnAction(e -> {
+            controlador.cerrarPanel(this);
         });
 
         getChildren().addAll(nombreLabel, inputNombre, direcciones, botones);

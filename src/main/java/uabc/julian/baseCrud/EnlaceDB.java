@@ -219,6 +219,34 @@ public class EnlaceDB {
         }
     }
 
+    public boolean AñadirPersona(String nombre, int direccionId) {
+        try {
+            String sqlInstruccion = "INSERT INTO Personas (nombre) VALUES (?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, nombre);
+
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            Integer generatedId = null;
+
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+
+                if (!AsociarPersonaDireccion(generatedId, direccionId)) {
+                    return false;
+                }
+            }
+
+            rs.close();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
      
     public boolean AñadirDireccion(String direccion, int personaId) {
         try {

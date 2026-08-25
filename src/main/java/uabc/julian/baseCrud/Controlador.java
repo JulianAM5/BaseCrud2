@@ -81,6 +81,10 @@ public class Controlador {
         return enlaceDB.AñadirPersona(nombre);
     }
 
+    public boolean solicitarAñadirPersona(String nombre, int direccionId){
+        return enlaceDB.AñadirPersona(nombre, direccionId);
+    }
+
     public boolean solicitarAñadirTelefono(int personaId, String telefono) {
         return enlaceDB.AñadirTelefono(personaId, telefono);
     }
