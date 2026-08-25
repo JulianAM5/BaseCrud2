@@ -19,7 +19,6 @@ public class EnlaceDB {
 
     Connection conn = null;
     Statement stmt = null;
-    ResultSet rs = null;
 
     public EnlaceDB() {
 
@@ -29,7 +28,7 @@ public class EnlaceDB {
         try {
             ArrayList<Persona> personas = new ArrayList<>();
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("SELECT * FROM Personas");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Personas");
 
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -40,13 +39,13 @@ public class EnlaceDB {
                 personas.add(persona);
             }
 
+            rs.close();
             return personas;
         } catch (SQLException se) {
             se.printStackTrace();
             return null;
         } finally {
             try {
-                if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
             } catch (SQLException se) {
                 se.printStackTrace();
@@ -60,22 +59,21 @@ public class EnlaceDB {
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
             ps.setInt(1, id);
             
-            rs = ps.executeQuery();
-
-            String nombre = rs.getString("nombre");
-
-            ps.close();
-            return new Persona(id, nombre);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {   
+                String nombre = rs.getString("nombre");
+                rs.close();
+                ps.close();
+                return new Persona(id, nombre);
+            } else {
+                rs.close();
+                ps.close();
+                return null;
+            }
         } catch (SQLException se) {
             se.printStackTrace();
             return null;
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -85,24 +83,22 @@ public class EnlaceDB {
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
             ps.setInt(1, id);
 
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
-            String direccion = rs.getString("direccion");
-
-            ps.close();
-            return new Direccion(id, direccion);
+            if (rs.next()) {
+                String direccion = rs.getString("direccion");
+                rs.close();
+                ps.close();
+                return new Direccion(id, direccion);
+            } else {
+                rs.close();
+                ps.close();
+                return null;
+            }
         } catch (SQLException se) {
             se.printStackTrace();
             return null;
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
-
     }
 
     public ArrayList<Telefono> RecuperarTelefonosDePersona(int personaId) {
@@ -113,24 +109,18 @@ public class EnlaceDB {
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
             ps.setInt(1, personaId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 telefonos.add(new Telefono(personaId, rs.getString("telefono")));
             }
 
+            rs.close();
             ps.close();
             return telefonos;
         } catch(SQLException se) {
             se.printStackTrace();
             return null;
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
@@ -142,23 +132,20 @@ public class EnlaceDB {
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
             ps.setInt(1, personaId);
-            rs = ps.executeQuery();
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                Direccion direccion = RecuperarDireccion(rs.getInt("direccionId"));
                 
+                if (direccion != null) { direcciones.add(direccion); }
             }
-
+            
+            rs.close();
+            ps.close();
             return direcciones;
         } catch(SQLException se) {
             se.printStackTrace();
             return null;
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
         }
     }
 
