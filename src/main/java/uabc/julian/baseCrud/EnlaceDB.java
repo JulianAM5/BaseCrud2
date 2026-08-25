@@ -270,6 +270,57 @@ public class EnlaceDB {
         }
     }
 
+    public boolean ModificarPersona(int personaId, String nombre) {
+        try {
+            String sqlInstruccion = "UPDATE Personas SET nombre = ? WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setString(1, nombre);
+            ps.setInt(2, personaId);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean ModificarDireccion(int direccionId, String direccion) {
+        try {
+            String sqlInstruccion = "UPDATE Direcciones SET direccion = ? WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setString(1, direccion);
+            ps.setInt(2, direccionId);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean ModificarTelefono(int personaId, String telefono) {
+        try {
+            String sqlInstruccion = "UPDATE Telefonos SET telefono = ? WHERE personaId = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setString(1, telefono);
+            ps.setInt(2, personaId);
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean EliminarTelefono(int personaId, String telefono) {
         try {
             String sqlInstruccion = "DELETE FROM Telefonos WHERE personaId = ?, telefono = ?";
