@@ -3,6 +3,7 @@ package uabc.julian.baseCrud;
 import java.sql.*;
 import java.util.ArrayList;
 
+import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
 
@@ -18,7 +19,6 @@ public class EnlaceDB {
 
     Connection conn = null;
     Statement stmt = null;
-    PreparedStatement ps = null;
     ResultSet rs = null;
 
     public EnlaceDB() {
@@ -56,24 +56,53 @@ public class EnlaceDB {
 
     public Persona RecuperarPersona(int id) {
         try {
-            String sqlInstruccion = "SELECT * FROM Personas where id = ?";
-            ps = conn.prepareStatement(sqlInstruccion);
+            String sqlInstruccion = "SELECT nombre FROM Personas where id = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
             ps.setInt(1, id);
             
             rs = ps.executeQuery();
 
-            return new Persona(rs.getInt("id"), rs.getString("nombre"));
+            String nombre = rs.getString("nombre");
+
+            ps.close();
+            return new Persona(id, nombre);
         } catch (SQLException se) {
             se.printStackTrace();
             return null;
         } finally {
             try {
                 if (rs != null) rs.close();
-                if (ps != null) ps.close();
+                if (stmt != null) stmt.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
+    }
+
+    public Direccion RecuperarDireccion(int id) {
+        try {
+            String sqlInstruccion = "SELECT direccion FROM Direcciones where id = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            String direccion = rs.getString("direccion");
+
+            ps.close();
+            return new Direccion(id, direccion);
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+
     }
 
     public ArrayList<Telefono> RecuperarTelefonosDePersona(int personaId) {
@@ -90,6 +119,7 @@ public class EnlaceDB {
                 telefonos.add(new Telefono(personaId, rs.getString("telefono")));
             }
 
+            ps.close();
             return telefonos;
         } catch(SQLException se) {
             se.printStackTrace();
@@ -97,7 +127,35 @@ public class EnlaceDB {
         } finally {
             try {
                 if (rs != null) rs.close();
-                if (ps != null) ps.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayList<Direccion> RecuperarDireccionesDePersona(int personaId) {
+        try {
+            ArrayList<Direccion> direcciones = new ArrayList<>();
+
+            String sqlInstruccion = "SELECT direccionId FROM Personas_Direcciones where personaId = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, personaId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                
+            }
+
+            return direcciones;
+        } catch(SQLException se) {
+            se.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
