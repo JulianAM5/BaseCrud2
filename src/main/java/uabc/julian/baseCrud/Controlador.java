@@ -77,13 +77,33 @@ public class Controlador {
         return enlaceDB.ModificarTelefono(personaId, telefono);
     }
 
+    public boolean solicitarAñadirPersona(String nombre) {
+        return enlaceDB.AñadirPersona(nombre);
+    }
+
+    public boolean solicitarAñadirTelefono(int personaId, String telefono) {
+        return enlaceDB.AñadirTelefono(personaId, telefono);
+    }
+
+    public boolean solicitarAñadirDireccion(String direccion) {
+        return enlaceDB.AñadirDireccion(direccion);
+    }
+
+    public boolean solicitarAñadirDireccion(String direccion, int personaId) {
+        return enlaceDB.AñadirDireccion(direccion, personaId);
+    }
+
+    public boolean solicitarAsociacionPersonaDireccion(int personaId, int direccionId) {
+        return enlaceDB.AsociarPersonaDireccion(personaId, direccionId);
+    }
+
     public void addOnDataBaseListener(OnDataBaseChangeListener listener) {
         listeners.add(listener);
     }
 
-    public void InvokeOnDataBaseChanged() {
+    public void InvokeOnDataBaseChanged(String newValue, int tipo) {
         for (int i = 0; i < listeners.size(); i++) {
-            listeners.get(i).OnDataBaseChanged();
+            listeners.get(i).OnDataBaseChanged(newValue, tipo);
         }
     }
 }
