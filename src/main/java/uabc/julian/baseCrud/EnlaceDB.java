@@ -1,5 +1,6 @@
 package uabc.julian.baseCrud;
 
+import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -128,7 +129,7 @@ public class EnlaceDB {
         try {
             ArrayList<Direccion> direcciones = new ArrayList<>();
 
-            String sqlInstruccion = "SELECT direccionId FROM Personas_Direcciones where personaId = ?";
+            String sqlInstruccion = "SELECT direccionId FROM Personas_Direcciones WHERE personaId = ?";
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
             ps.setInt(1, personaId);
@@ -144,6 +145,31 @@ public class EnlaceDB {
             ps.close();
             return direcciones;
         } catch(SQLException se) {
+            se.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Persona> RecuperarPersonasAsociadasADireccion(int direccionId) {
+        try {
+            ArrayList<Persona> personas = new ArrayList<>();
+            
+            String sqlInstruccion = "SELECT personaId FROM Personas_Direcciones WHERE direccion = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, direccionId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Persona persona = RecuperarPersona(rs.getInt("personaId"));
+
+                if (persona != null) { personas.add(persona); }
+            }
+
+            rs.close();
+            ps.close();
+            return personas;
+        } catch (SQLException se) {
             se.printStackTrace();
             return null;
         }
