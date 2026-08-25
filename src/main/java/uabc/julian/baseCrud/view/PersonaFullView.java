@@ -18,16 +18,21 @@ import uabc.julian.baseCrud.data.Telefono;
 /**
  * PersonaFullView
  */
-public class PersonaFullView extends VBox {
-    
+public class PersonaFullView extends VBox implements OnDataBaseChangeListener {
+   
     private Controlador controlador;
+    private int id;
+    private String nombre;
 
     public PersonaFullView(Controlador controlador, int id, String nombre) {
         this.controlador = controlador;
-        setLayout(nombre, id);
+        this.id = id;
+        this.nombre = nombre;
+        controlador.addOnDataBaseListener(this);
+        setLayout();
     }
 
-    private void setLayout(String nombre, int id) {
+    private void setLayout() {
         HBox top = new HBox();
         
         Label nombreLabel = new Label(nombre);
@@ -48,9 +53,10 @@ public class PersonaFullView extends VBox {
         setTelefonos(telefonosSPane, id);
         setDirecciones(direccionesSPane, id);
 
-
+        editarNombre.setOnAction(e -> {});
         cerrarButton.setOnAction(e -> { controlador.cerrarPanel(this); });
-
+        agregarTelefonoButton.setOnAction(e -> {});
+        agregarDireccionButton.setOnAction(e -> {});
 
         nombreLabel.getStyleClass().add("custom-title");
         editarNombre.getStyleClass().add("custom-edit-smallButton");
@@ -61,6 +67,7 @@ public class PersonaFullView extends VBox {
         direccionesSPane.getStyleClass().add("custom-mini-scrollPane");
         telefonosSPane.getStyleClass().add("custom-mini-scrollPane");
         cerrarButton.getStyleClass().add("custom-delete-smallButton");
+        getStyleClass().add("vbox");
 
         telefonosLabel.setPadding(new Insets(40, 0, 0, 0));
         direccionesLabel.setPadding(new Insets(40, 0, 0, 0));
@@ -96,4 +103,9 @@ public class PersonaFullView extends VBox {
         pane.setFitToWidth(true);
         pane.setContent(holder);
     }
+
+	@Override
+	public void OnDataBaseChanged() {
+        setLayout();
+	}
 }
