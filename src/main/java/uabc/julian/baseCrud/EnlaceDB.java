@@ -204,6 +204,52 @@ public class EnlaceDB {
         }
     }
 
+    public boolean EliminarTelefono(int personaId, String telefono) {
+        try {
+            String sqlInstruccion = "DELETE FROM Telefonos WHERE personaId = ?, telefono = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, personaId);
+            ps.setString(2, telefono);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean EliminarDireccion(int direccionId) {
+        try {
+            String sqlInstruccion = "DELETE FROM Direcciones WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, direccionId);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean EliminarPersona(int personaId) {
+        try {
+            String sqlInstruccion = "DELETE FROM Personas WHERE id = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, personaId);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
     public void ConectarAServidor() {
         try {
             // 1. Registrar el driver JDBC
