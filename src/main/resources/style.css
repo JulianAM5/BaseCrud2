@@ -2,10 +2,42 @@
     -fx-pref-width: 580px;
 
     -fx-pref-height: 250px;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #c0c0c0;
+    -fx-border-radius: 15px 15px 0px 0px;
+    -fx-border-width: 2px;
+    -fx-clip: true;
+}
+
+.custom-mini-scrollPane > .viewport {
+    -fx-background-radius: 15px 15px 0px 0px;
+    -fx-background-color: transparent;
+}
+
+.custom-full-scrollPane {
+    -fx-pref-width: 580px;
+
+    -fx-pref-height: 600px;
+    -fx-background-color: transparent;
+
+    -fx-border-color: #c0c0c0;
+    -fx-border-radius: 15px 15px 0px 0px;
+    -fx-border-width: 2px;
+    -fx-clip: true;
+}
+
+.custom-full-scrollPane > .viewport {
+    -fx-background-radius: 15px 15px 0px 0px;
+    -fx-background-color: transparent;
 }
 
 .custom-background {
-    -fx-background-color: yellow;
+    -fx-background-color: linear-gradient(#F5F5F5, #F0F2F5);
+}
+
+.button {
+    -fx-cursor: hand;
 }
 
 .custom-add-button {
@@ -17,6 +49,11 @@
     -fx-font-size: 15px;
 }
 
+.custom-cerrar-button {
+    -fx-background-color: linear-gradient(#E74C3C, #C0392B);
+    -fx-font-weight: bold;
+}
+
 .custom-smallView {
     -fx-background-color: linear-gradient(#f9f9f9, #e8e8e8);
     -fx-padding: 5;
@@ -26,6 +63,7 @@
     -fx-border-color: #c0c0c0;
     -fx-border-width: 1;
 
+    -fx-alignment: center-left;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 1);
     -fx-cursor: hand;
 }
@@ -35,6 +73,7 @@
     -fx-font-size: 15px;
     -fx-background-color:yellow;
     -fx-pref-width: 430px;
+    -fx-wrap-text: true;
 }
 
 .custom-edit-smallButton {
@@ -50,6 +89,7 @@
 }
 
 .custom-title {
+    -fx-pref-width: 550px;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
 }
