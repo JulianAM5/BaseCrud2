@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import uabc.julian.baseCrud.data.Persona;
+import uabc.julian.baseCrud.data.Telefono;
 
 /**
  * EnlaceDB
@@ -17,6 +18,7 @@ public class EnlaceDB {
 
     Connection conn = null;
     Statement stmt = null;
+    PreparedStatement ps = null;
     ResultSet rs = null;
 
     public EnlaceDB() {
@@ -55,7 +57,7 @@ public class EnlaceDB {
     public Persona RecuperarPersona(int id) {
         try {
             String sqlInstruccion = "SELECT * FROM Personas where id = ?";
-            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+            ps = conn.prepareStatement(sqlInstruccion);
             ps.setInt(1, id);
             
             rs = ps.executeQuery();
@@ -67,7 +69,35 @@ public class EnlaceDB {
         } finally {
             try {
                 if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
+                if (ps != null) ps.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayList<Telefono> RecuperarTelefonosDePersona(int personaId) {
+        try {
+            ArrayList<Telefono> telefonos = new ArrayList<>();
+
+            String sqlInstruccion = "SELECT telefono FROM Telefonos where personaId = ?";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, personaId);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                telefonos.add(new Telefono(personaId, rs.getString("telefono")));
+            }
+
+            return telefonos;
+        } catch(SQLException se) {
+            se.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
             } catch (SQLException se) {
                 se.printStackTrace();
             }
