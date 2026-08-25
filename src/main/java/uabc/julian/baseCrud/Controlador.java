@@ -14,9 +14,11 @@ import uabc.julian.baseCrud.data.Telefono;
 public class Controlador {
 
     private StackPane root;
+    private EnlaceDB enlaceDB;
 
     public Controlador(StackPane root) {
         this.root = root;
+        enlaceDB = new EnlaceDB();
     }
 
     public void abrirPanel(Pane pane) {
@@ -28,28 +30,23 @@ public class Controlador {
     }
 
     public ArrayList<Persona> solicitarPersonas() {
-        ArrayList<Persona> personas = new ArrayList<>();
-        return personas;
+        return enlaceDB.RecuperarPersonas();
     }
 
     public ArrayList<Direccion> solicitarDirecciones() {
-        ArrayList<Direccion> direcciones = new ArrayList<>();
-        return direcciones;
+        return enlaceDB.RecuperarDirecciones();
     }
 
     public ArrayList<Direccion> solicitarDireccionesDePersona(int personaId) {
-        ArrayList<Direccion> direcciones = new ArrayList<>();
-        return direcciones;
+        return enlaceDB.RecuperarDireccionesDePersona(personaId);
     }
 
     public ArrayList<Telefono> solicitarTelefonosDePersona(int personaId) {
-        ArrayList<Telefono> telefonos = new ArrayList<>();
-        return telefonos;
+        return enlaceDB.RecuperarTelefonosDePersona(personaId);
     }
 
     public ArrayList<Persona> solicitarPersonasAsociadasADireccion(int direccionId) {
-        ArrayList<Persona> personas = new ArrayList<>();
-        return personas;
+        return enlaceDB.RecuperarPersonasAsociadasADireccion(direccionId);
     }
 
     public boolean soliciarEdicionDeNombre() {
