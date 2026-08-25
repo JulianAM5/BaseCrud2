@@ -19,6 +19,7 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
     private Controlador controlador;
     private int id;
     private String direccion;
+    private Label direccionLabel;
 
     public DireccionFullView(Controlador controlador, int id, String direccion) {
         this.controlador = controlador;
@@ -29,9 +30,11 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
     }
 
     private void setLayout() {
+        getChildren().clear();
+
         HBox top = new HBox();
         
-        Label direccionLabel = new Label(direccion);
+        direccionLabel = new Label(direccion);
         Button editarDireccion = new Button("Editar");
 
         Button cerrarButton = new Button("\u274C");
@@ -76,7 +79,9 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
     }
 
 	@Override
-	public void OnDataBaseChanged() {
+	public void OnDataBaseChanged(String newValue, int tipo) {
         setLayout();
+
+        if (tipo == 1) { direccionLabel.setText(newValue); }
 	}
 }
