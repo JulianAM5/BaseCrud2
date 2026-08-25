@@ -39,6 +39,9 @@ public class PersonaFullView extends VBox {
         direccionesSPane.getStyleClass().add("custom-mini-scrollPane");
         telefonosSPane.getStyleClass().add("custom-mini-scrollPane");
 
+        telefonosLabel.setPadding(new Insets(40, 0, 0, 0));
+        direccionesLabel.setPadding(new Insets(40, 0, 0, 0));
+
         getChildren().addAll(nombreLabel, editarNombre, telefonosLabel, telefonosSPane, agregarTelefonoButton, direccionesLabel, direccionesSPane, agregarDireccionButton);
 
         setPadding(new Insets(10));
