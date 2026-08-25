@@ -1,5 +1,6 @@
 package uabc.julian.baseCrud.view;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -36,6 +37,7 @@ public class TelefonoSmallView extends HBox {
         telefonoLabel.getStyleClass().add("custom-label-smallView");
         editarButton.getStyleClass().add("custom-edit-smallButton");
         borrarButton.getStyleClass().add("custom-delete-smallButton");
+
         getChildren().addAll(telefonoLabel, editarButton, borrarButton);
 
         getStyleClass().add("custom-smallView");

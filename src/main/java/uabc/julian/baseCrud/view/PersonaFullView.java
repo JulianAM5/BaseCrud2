@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import uabc.julian.baseCrud.Controlador;
@@ -27,8 +28,14 @@ public class PersonaFullView extends VBox {
     }
 
     private void setLayout(String nombre, int id) {
+        HBox top = new HBox();
+        
         Label nombreLabel = new Label(nombre);
         Button editarNombre = new Button("Editar");
+
+        Button cerrarButton = new Button("X");
+
+        top.getChildren().addAll(nombreLabel, cerrarButton);
 
         Label telefonosLabel = new Label("Telefonos");
         ScrollPane telefonosSPane = new ScrollPane();
@@ -41,18 +48,24 @@ public class PersonaFullView extends VBox {
         setTelefonos(telefonosSPane, id);
         setDirecciones(direccionesSPane, id);
 
+
+        cerrarButton.setOnAction(e -> { controlador.cerrarPanel(this); });
+
+
         nombreLabel.getStyleClass().add("custom-title");
+        editarNombre.getStyleClass().add("custom-edit-smallButton");
         telefonosLabel.getStyleClass().add("custom-title");
         direccionesLabel.getStyleClass().add("custom-title");
         agregarTelefonoButton.getStyleClass().add("custom-add-button");
         agregarDireccionButton.getStyleClass().add("custom-add-button");
         direccionesSPane.getStyleClass().add("custom-mini-scrollPane");
         telefonosSPane.getStyleClass().add("custom-mini-scrollPane");
+        cerrarButton.getStyleClass().add("custom-cerrar-button");
 
         telefonosLabel.setPadding(new Insets(40, 0, 0, 0));
         direccionesLabel.setPadding(new Insets(40, 0, 0, 0));
 
-        getChildren().addAll(nombreLabel, editarNombre, telefonosLabel, telefonosSPane, agregarTelefonoButton, direccionesLabel, direccionesSPane, agregarDireccionButton);
+        getChildren().addAll(top, editarNombre, telefonosLabel, telefonosSPane, agregarTelefonoButton, direccionesLabel, direccionesSPane, agregarDireccionButton);
 
         setPadding(new Insets(10));
     }
