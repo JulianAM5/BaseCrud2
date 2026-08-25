@@ -12,9 +12,8 @@ import uabc.julian.baseCrud.data.Telefono;
  * EnlaceDB
  */
 public class EnlaceDB {
-
     // Datos de conexión a la base de datos
-    private static final String URL = "jdbc:mariadb://localhost:3306/agenda";
+    private static final String URL = "jdbc:mariadb://localhost:3306/agenda_2";
     private static final String USER = "usuario1";
     private static final String PASSWORD = "superpassword";
 
@@ -22,7 +21,7 @@ public class EnlaceDB {
     Statement stmt = null;
 
     public EnlaceDB() {
-
+        ConectarAServidor();
     }
 
     public ArrayList<Persona> RecuperarPersonas() {
@@ -183,7 +182,7 @@ public class EnlaceDB {
         try {
             ArrayList<Persona> personas = new ArrayList<>();
             
-            String sqlInstruccion = "SELECT personaId FROM Personas_Direcciones WHERE direccion = ?";
+            String sqlInstruccion = "SELECT personaId FROM Personas_Direcciones WHERE direccionId = ?";
             PreparedStatement ps = conn.prepareStatement(sqlInstruccion);
 
             ps.setInt(1, direccionId);
@@ -219,6 +218,36 @@ public class EnlaceDB {
             return false;
         }
     }
+
+     
+    public boolean AñadirDireccion(String direccion, int personaId) {
+        try {
+            String sqlInstruccion = "INSERT INTO Direcciones (direccion) VALUES (?)";
+            PreparedStatement ps = conn.prepareStatement(sqlInstruccion, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, direccion);
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            Integer generatedId = null;
+            if (rs.next()) {
+                generatedId = rs.getInt(1);
+
+                if (!AsociarPersonaDireccion(personaId, generatedId)) {
+                    return false;
+                }
+            }
+
+            rs.close();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
+
 
     public boolean AñadirDireccion(String direccion) {
         try {
