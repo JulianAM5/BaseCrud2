@@ -11,6 +11,9 @@ import uabc.julian.baseCrud.data.Telefono;
  */
 public interface Repositorio {
 
+    boolean iniciarConexion();
+    boolean cerrarConexion();
+
     List<Persona> consultarTodasPersonas();
     Persona consultarPersona(int id);
 
