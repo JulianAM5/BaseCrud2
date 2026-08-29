@@ -5,12 +5,18 @@ package uabc.julian.baseCrud.data;
  */
 public class Telefono {
 
+    private int id;
     private int personaId;
     private String numeroTelefonico;
 
-    public Telefono(int personaId, String numeroTelefonico) {
+    public Telefono(int id, int personaId, String numeroTelefonico) {
+        this.id = id;
         this.personaId = personaId;
         this.numeroTelefonico = numeroTelefonico;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getPersonaId() {
