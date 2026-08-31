@@ -5,7 +5,7 @@ import uabc.julian.baseCrud.view.Visualizable;
 /**
  * Direccion
  */
-public class Direccion implements Visualizable {
+public class Direccion {
 
     private int id;
     private String direccion;
@@ -19,13 +19,7 @@ public class Direccion implements Visualizable {
         return direccion;
     }
 
-    @Override
     public int getId() {
         return id;
     }
-
-	@Override
-	public String getTextoVisualizable() {
-        return direccion;
-	}
 }

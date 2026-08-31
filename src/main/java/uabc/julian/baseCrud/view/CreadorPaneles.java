@@ -5,6 +5,11 @@ import javafx.scene.layout.Pane;
 import uabc.julian.baseCrud.controladores.Escritor;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.controladores.NavegacionUI;
+import uabc.julian.baseCrud.data.Direccion;
+import uabc.julian.baseCrud.data.Persona;
+import uabc.julian.baseCrud.data.Telefono;
+import uabc.julian.baseCrud.view.SmallViews.DireccionSmallView;
+import uabc.julian.baseCrud.view.SmallViews.PersonaSmallView;
 
 /**
  * CreadorPaneles
@@ -62,13 +67,22 @@ public class CreadorPaneles implements Creador{
 	}
 
 	@Override
-	public Pane crearSmallView(Visualizable visualizable) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'crearSmallView'");
+	public TabPane crearTabsPanel() {
+        return new MainTabs(this);
 	}
 
 	@Override
-	public TabPane crearTabsPanel() {
-        return new MainTabs(this);
+	public Pane crearDireccionSmallView(Direccion direccion, boolean aceptarModificaciones) {
+        return new DireccionSmallView(direccion, aceptarModificaciones)
+	}
+
+	@Override
+	public Pane crearPersonaSmallView(Persona persona, boolean aceptarModificaciones) {
+        return new PersonaSmallView(persona, aceptarModificaciones);
+	}
+
+	@Override
+	public Pane crearTelefonoSmallView(Telefono telefono, boolean aceptarModificaciones) {
+        return new TelefononSmallView(telefono, aceptarModificaciones);
 	}
 }

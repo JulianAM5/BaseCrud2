@@ -1,20 +1,20 @@
 package uabc.julian.baseCrud.data;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import uabc.julian.baseCrud.view.Visualizable;
 
 /**
  * Persona
  */
-public class Persona implements Visualizable {
+public class Persona {
 
     private int id;
     private String nombre;
-    private List<Direccion> direcciones;
-    private List<Telefono> telefonos;
+    private ArrayList<Direccion> direcciones;
+    private ArrayList<Telefono> telefonos;
 
-    public Persona(int id, String nombre, List<Direccion> direcciones, List<Telefono> telefonos) {
+    public Persona(int id, String nombre, ArrayList<Direccion> direcciones, ArrayList<Telefono> telefonos) {
         this.id = id;
         this.nombre = nombre;
         this.direcciones = direcciones;
@@ -25,13 +25,15 @@ public class Persona implements Visualizable {
         return nombre;
     }
 
-    @Override
+    public ArrayList<Direccion> getDirecciones() {
+        return direcciones;
+    }
+
+    public ArrayList<Telefono> getTelefonos() {
+        return telefonos;
+    }
+
     public int getId() {
         return id;
     }
-
-	@Override
-	public String getTextoVisualizable() {
-        return nombre;
-	}
 }

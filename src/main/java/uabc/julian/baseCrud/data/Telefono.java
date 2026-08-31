@@ -5,7 +5,7 @@ import uabc.julian.baseCrud.view.Visualizable;
 /**
  * Telefono
  */
-public class Telefono implements Visualizable {
+public class Telefono {
 
     private int id;
     private int personaId;
@@ -25,13 +25,7 @@ public class Telefono implements Visualizable {
         return numeroTelefonico;
     }
 
-    @Override
     public int getId() {
         return id;
     }
-
-	@Override
-	public String getTextoVisualizable() {
-        return numeroTelefonico;
-	}
 }
