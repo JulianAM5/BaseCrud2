@@ -1,4 +1,4 @@
-package uabc.julian.baseCrud.view;
+package uabc.julian.baseCrud.view.ListViews;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.data.Direccion;
+import uabc.julian.baseCrud.view.Creador;
 
 /**
  * DireccionesView
@@ -18,8 +19,9 @@ public class DireccionesView extends VBox {
     private Lector lector;
     private Creador creador;
 
-    public DireccionesView(Lector lector) {
+    public DireccionesView(Lector lector, Creador creador) {
         this.lector = lector;
+        this.creador = creador;
         setLayout();
     }
 
