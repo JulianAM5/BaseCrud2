@@ -17,7 +17,7 @@ import uabc.julian.baseCrud.view.Creador;
 /**
  * FullViewPersona
  */
-public class FullViewPersona extends HBox {
+public class FullViewPersona extends VBox {
 
     private Persona persona;
     private Lector lector;
@@ -27,6 +27,8 @@ public class FullViewPersona extends HBox {
         this.persona = persona;
         this.lector = lector;
         this.creador = creador;
+
+        setLayout();
     }
 
     private void setLayout() {
@@ -34,7 +36,7 @@ public class FullViewPersona extends HBox {
 
         HBox top = new HBox();
 
-        Label nombreLabel = new Label();
+        Label nombreLabel = new Label(persona.getNombre());
         Button editarNombre = new Button("Editar");
 
         Button cerrarButton = new Button("\u274C");

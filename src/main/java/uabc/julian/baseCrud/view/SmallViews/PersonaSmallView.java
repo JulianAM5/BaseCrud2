@@ -44,7 +44,7 @@ public class PersonaSmallView extends HBox {
     }
 
     private void onModificar() {
-        creador.crearFullViewPersonaPanel();
+        creador.crearFullViewPersonaPanel(persona);
     }
 
     private void onEliminar() {

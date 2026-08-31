@@ -15,8 +15,8 @@ public interface Creador {
     Pane crearDireccionSmallView(Direccion direccion, boolean aceptarModificaciones);
     Pane crearTelefonoSmallView(Telefono telefono, boolean aceptarModificaciones);
     Pane crearModificarPanel();
-    Pane crearFullViewPersonaPanel();
-    Pane crearFullViewDireccionesPanel();
+    Pane crearFullViewPersonaPanel(Persona persona);
+    Pane crearFullViewDireccionesPanel(Direccion direccion);
     Pane crearPreviewPersonasPanel();
     Pane crearPreviewDireccionesPanel();
     Pane crearAgregarPersonasPanel();

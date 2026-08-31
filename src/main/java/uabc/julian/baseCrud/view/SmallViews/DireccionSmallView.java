@@ -44,7 +44,7 @@ public class DireccionSmallView extends HBox {
     }
 
     private void onModificar() {
-        creador.crearFullViewDireccionesPanel();
+        creador.crearFullViewDireccionesPanel(direccion);
     }
 
     private void onEliminar() {

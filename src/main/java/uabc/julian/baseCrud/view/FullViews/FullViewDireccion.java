@@ -23,6 +23,14 @@ public class FullViewDireccion extends VBox {
     private Lector lector;
     private Creador creador;
 
+    public FullViewDireccion(Direccion direccion, Lector lector, Creador creador) {
+        this.creador = creador;
+        this.lector = lector;
+        this.direccion = direccion;
+
+        setLayout();
+    }
+
     private void setLayout() {
         getChildren().clear();
 

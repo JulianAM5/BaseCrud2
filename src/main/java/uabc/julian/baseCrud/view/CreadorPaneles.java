@@ -8,6 +8,8 @@ import uabc.julian.baseCrud.controladores.NavegacionUI;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
+import uabc.julian.baseCrud.view.FullViews.FullViewDireccion;
+import uabc.julian.baseCrud.view.FullViews.FullViewPersona;
 import uabc.julian.baseCrud.view.ListViews.DireccionesView;
 import uabc.julian.baseCrud.view.ListViews.PersonasView;
 import uabc.julian.baseCrud.view.SmallViews.DireccionSmallView;
@@ -35,14 +37,17 @@ public class CreadorPaneles implements Creador{
 	}
 
 	@Override
-	public Pane crearFullViewPersonaPanel() {
-		throw new UnsupportedOperationException("Unimplemented method 'crearFullViewPersonaPanel'");
+	public Pane crearFullViewPersonaPanel(Persona persona) {
+        Pane fullView = new FullViewPersona(persona, lector, this);
+        navegacion.abrirPanel(fullView);
+        return fullView;
 	}
 
 	@Override
-	public Pane crearFullViewDireccionesPanel() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'crearFullViewDireccionesPanel'");
+	public Pane crearFullViewDireccionesPanel(Direccion direccion) {
+        Pane fullView = new FullViewDireccion(direccion, lector, this);
+        navegacion.abrirPanel(fullView);
+        return fullView;
 	}
 
 	@Override
