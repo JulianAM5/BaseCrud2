@@ -21,7 +21,7 @@ import uabc.julian.baseCrud.data.Persona;
 /**
  * DireccionFullView
  */
-public class DireccionFullView extends VBox implements OnDataBaseChangeListener {
+public class DireccionFullView extends VBox {
 
     private Controlador controlador;
     private int id;
@@ -32,7 +32,6 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
         this.controlador = controlador;
         this.id = id;
         this.direccion = direccion;
-        controlador.addOnDataBaseListener(this);
         setLayout();
     }
 
@@ -135,11 +134,4 @@ public class DireccionFullView extends VBox implements OnDataBaseChangeListener 
         pane.setFitToWidth(true);
         pane.setContent(holder);
     }
-
-	@Override
-	public void OnDataBaseChanged(String newValue, int tipo) {
-        setLayout();
-
-        if (tipo == 1) { direccionLabel.setText(newValue); }
-	}
 }

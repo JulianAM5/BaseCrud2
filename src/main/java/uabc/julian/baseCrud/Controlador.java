@@ -117,7 +117,6 @@ public class Controlador {
     public void setDB(EnlaceDB enlaceDB) {
         this.enlaceDB = enlaceDB;
 
-        root.getChildren().add(new MainTabs(this));
         cerrarPanel(loginView);
     }
 }

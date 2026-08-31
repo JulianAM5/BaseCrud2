@@ -35,7 +35,7 @@ public class EnlaceDB {
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
 
-                Persona persona = new Persona(id, nombre);
+                Persona persona = new Persona(id, nombre, null, null);
 
                 personas.add(persona);
             }
@@ -95,7 +95,7 @@ public class EnlaceDB {
                 String nombre = rs.getString("nombre");
                 rs.close();
                 ps.close();
-                return new Persona(id, nombre);
+                return new Persona(id, nombre, null, null);
             } else {
                 rs.close();
                 ps.close();
@@ -142,7 +142,7 @@ public class EnlaceDB {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                telefonos.add(new Telefono(personaId, rs.getString("telefono")));
+                telefonos.add(new Telefono(rs.getInt("id"), personaId, rs.getString("telefono")));
             }
 
             rs.close();
