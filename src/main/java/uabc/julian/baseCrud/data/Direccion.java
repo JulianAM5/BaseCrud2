@@ -1,7 +1,5 @@
 package uabc.julian.baseCrud.data;
 
-import uabc.julian.baseCrud.view.Visualizable;
-
 /**
  * Direccion
  */
