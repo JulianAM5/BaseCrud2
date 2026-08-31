@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
  * Creador
  */
 public interface Creador {
+    Pane crearSmallView(Visualizable visualizable);
     Pane crearModificarPanel();
     Pane crearFullViewPersonaPanel();
     Pane crearFullViewDireccionesPanel();
