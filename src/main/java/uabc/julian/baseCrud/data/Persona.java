@@ -21,12 +21,13 @@ public class Persona implements Visualizable {
         this.telefonos = telefonos;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getNombre() {
         return nombre;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
 	@Override

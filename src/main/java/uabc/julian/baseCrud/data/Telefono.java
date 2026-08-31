@@ -17,16 +17,17 @@ public class Telefono implements Visualizable {
         this.numeroTelefonico = numeroTelefonico;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getPersonaId() {
         return personaId;
     }
 
     public String getNumeroTelefonico() {
         return numeroTelefonico;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
 	@Override

@@ -15,12 +15,13 @@ public class Direccion implements Visualizable {
         this.direccion = direccion;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getDireccion() {
         return direccion;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
 	@Override
