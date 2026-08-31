@@ -3,7 +3,7 @@ package uabc.julian.baseCrud.BaseDatos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
@@ -24,9 +24,8 @@ public class MariaRepo implements Repositorio {
     }
 
 	@Override
-	public List<Persona> consultarTodasPersonas() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'consultarTodasPersonas'");
+	public ArrayList<Persona> consultarTodasPersonas() {
+		throw new UnsupportedOperationException("Unimplemented method 'consultarPersona'");
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class MariaRepo implements Repositorio {
 	}
 
 	@Override
-	public List<Direccion> consultarTodasDirecciones() {
+	public ArrayList<Direccion> consultarTodasDirecciones() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'consultarTodasDirecciones'");
 	}
@@ -48,7 +47,7 @@ public class MariaRepo implements Repositorio {
 	}
 
 	@Override
-	public List<Telefono> consultarTodosTelefonos() {
+	public ArrayList<Telefono> consultarTodosTelefonos() {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'consultarTodosTelefonos'");
 	}
@@ -60,19 +59,19 @@ public class MariaRepo implements Repositorio {
 	}
 
 	@Override
-	public List<Telefono> consultarTelefonosDePersona(int personaId) {
+	public ArrayList<Telefono> consultarTelefonosDePersona(int personaId) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'consultarTelefonosDePersona'");
 	}
 
 	@Override
-	public List<Direccion> consultarDireccionesDePersona(int personaId) {
+	public ArrayList<Direccion> consultarDireccionesDePersona(int personaId) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'consultarDireccionesDePersona'");
 	}
 
 	@Override
-	public List<Persona> consultarPersonaEnDireccion(int direccionId) {
+	public ArrayList<Persona> consultarPersonaEnDireccion(int direccionId) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'consultarPersonaEnDireccion'");
 	}
