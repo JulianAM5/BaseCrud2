@@ -10,6 +10,7 @@ import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
 import uabc.julian.baseCrud.view.SmallViews.DireccionSmallView;
 import uabc.julian.baseCrud.view.SmallViews.PersonaSmallView;
+import uabc.julian.baseCrud.view.SmallViews.TelefonoSmallView;
 
 /**
  * CreadorPaneles
@@ -73,7 +74,7 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearDireccionSmallView(Direccion direccion, boolean aceptarModificaciones) {
-        return new DireccionSmallView(direccion, aceptarModificaciones)
+        return new DireccionSmallView(direccion, aceptarModificaciones);
 	}
 
 	@Override
@@ -83,6 +84,6 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearTelefonoSmallView(Telefono telefono, boolean aceptarModificaciones) {
-        return new TelefononSmallView(telefono, aceptarModificaciones);
+        return new TelefonoSmallView(telefono, aceptarModificaciones);
 	}
 }

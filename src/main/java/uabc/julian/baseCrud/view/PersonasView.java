@@ -51,7 +51,7 @@ public class PersonasView extends VBox {
         });
 
         for (Persona persona : personas) {
-            holder.getChildren().add(creador.crearSmallView(persona));
+            holder.getChildren().add(creador.crearPersonaSmallView(persona, true));
         }
 
         holder.setSpacing(3);

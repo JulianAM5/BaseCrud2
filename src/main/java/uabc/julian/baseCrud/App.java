@@ -7,9 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import uabc.julian.baseCrud.controladores.Controlador;
 import uabc.julian.baseCrud.view.CreadorPaneles;
-import uabc.julian.baseCrud.view.DireccionFullView;
 import uabc.julian.baseCrud.view.MainTabs;
-import uabc.julian.baseCrud.view.PersonaFullView;
 
 /**
  * Hello world!

@@ -2,7 +2,6 @@ package uabc.julian.baseCrud.view;
 
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import uabc.julian.baseCrud.Controlador;
 
 /**
  * MainTabs

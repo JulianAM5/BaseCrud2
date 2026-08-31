@@ -50,7 +50,7 @@ public class DireccionesView extends VBox {
         });
 
         for (Direccion direccion : direcciones) {
-            holder.getChildren().add(creador.crearSmallView(direccion));
+            holder.getChildren().add(creador.crearDireccionSmallView(direccion, true));
         }
 
         holder.setSpacing(3);
