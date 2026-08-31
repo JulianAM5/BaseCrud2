@@ -1,5 +1,6 @@
 package uabc.julian.baseCrud.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.layout.Pane;
@@ -18,23 +19,6 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
     public Controlador(Pane root) {
         this.root = root;
     }
-	@Override
-	public List<Persona> leerPersonas() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerPersonas'");
-	}
-
-	@Override
-	public List<Direccion> leerDirecciones() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerDirecciones'");
-	}
-
-	@Override
-	public List<Telefono> leerTelefonos() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerTelefonos'");
-	}
 
 	@Override
 	public Persona leerPersona(int id) {
@@ -142,5 +126,39 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
         root.getChildren().remove(pane);
 	}
 
-    
+	@Override
+	public ArrayList<Persona> leerPersonasAsignadasADireccion(int direccionId) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'leerPersonasAsignadasADireccion'");
+	}
+
+	@Override
+	public ArrayList<Direccion> leerDireccionesAsignadasAPersona(int personaId) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'leerDireccionesAsignadasAPersona'");
+	}
+
+	@Override
+	public ArrayList<Telefono> leerTelefonosAsignadosAPersona(int personaId) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'leerTelefonosAsignadosAPersona'");
+	}
+
+	@Override
+	public ArrayList<Persona> leerPersonas() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'leerPersonas'");
+	}
+
+	@Override
+	public ArrayList<Direccion> leerDirecciones() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'leerDirecciones'");
+	}
+
+	@Override
+	public ArrayList<Telefono> leerTelefonos() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'leerTelefonos'");
+	}
 }

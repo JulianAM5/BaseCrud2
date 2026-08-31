@@ -1,6 +1,6 @@
 package uabc.julian.baseCrud.controladores;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
@@ -10,9 +10,13 @@ import uabc.julian.baseCrud.data.Telefono;
  * Lector
  */
 public interface Lector {
-    List<Persona> leerPersonas();
-    List<Direccion> leerDirecciones();
-    List<Telefono> leerTelefonos();
+    ArrayList<Persona> leerPersonas();
+    ArrayList<Direccion> leerDirecciones();
+    ArrayList<Telefono> leerTelefonos();
+
+    ArrayList<Persona> leerPersonasAsignadasADireccion(int direccionId);
+    ArrayList<Direccion> leerDireccionesAsignadasAPersona(int personaId);
+    ArrayList<Telefono> leerTelefonosAsignadosAPersona(int personaId);
 
     Persona leerPersona(int id);
     Direccion leerDireccion(int id);
