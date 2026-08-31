@@ -2,15 +2,22 @@ package uabc.julian.baseCrud.controladores;
 
 import java.util.List;
 
+import javafx.scene.layout.Pane;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
+import uabc.julian.baseCrud.view.Creador;
 
 /**
  * Controlador
  */
-public class Controlador implements Escritor, Lector {
+public class Controlador implements Escritor, Lector, NavegacionUI {
 
+    private Pane root;
+
+    public Controlador(Pane root) {
+        this.root = root;
+    }
 	@Override
 	public List<Persona> leerPersonas() {
 		// TODO Auto-generated method stub
@@ -124,4 +131,16 @@ public class Controlador implements Escritor, Lector {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'desasignarTelefonoAPersona'");
 	}
+
+	@Override
+	public void abrirPanel(Pane pane) {
+        root.getChildren().add(pane);
+	}
+
+	@Override
+	public void cerrarPanel(Pane pane) {
+        root.getChildren().remove(pane);
+	}
+
+    
 }
