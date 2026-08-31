@@ -1,9 +1,11 @@
 package uabc.julian.baseCrud.data;
 
+import uabc.julian.baseCrud.view.Visualizable;
+
 /**
  * Telefono
  */
-public class Telefono {
+public class Telefono implements Visualizable {
 
     private int id;
     private int personaId;
@@ -26,4 +28,9 @@ public class Telefono {
     public String getNumeroTelefonico() {
         return numeroTelefonico;
     }
+
+	@Override
+	public String getTextoVisualizable() {
+        return numeroTelefonico;
+	}
 }

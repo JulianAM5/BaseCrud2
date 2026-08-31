@@ -2,10 +2,12 @@ package uabc.julian.baseCrud.data;
 
 import java.util.List;
 
+import uabc.julian.baseCrud.view.Visualizable;
+
 /**
  * Persona
  */
-public class Persona {
+public class Persona implements Visualizable {
 
     private int id;
     private String nombre;
@@ -26,4 +28,9 @@ public class Persona {
     public String getNombre() {
         return nombre;
     }
+
+	@Override
+	public String getTextoVisualizable() {
+        return nombre;
+	}
 }
