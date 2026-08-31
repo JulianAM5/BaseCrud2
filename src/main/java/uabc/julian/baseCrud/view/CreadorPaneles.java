@@ -38,14 +38,14 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearFullViewPersonaPanel(Persona persona) {
-        Pane fullView = new FullViewPersona(persona, lector, this);
+        Pane fullView = new FullViewPersona(persona, lector, this, navegacion);
         navegacion.abrirPanel(fullView);
         return fullView;
 	}
 
 	@Override
 	public Pane crearFullViewDireccionesPanel(Direccion direccion) {
-        Pane fullView = new FullViewDireccion(direccion, lector, this);
+        Pane fullView = new FullViewDireccion(direccion, lector, this, navegacion);
         navegacion.abrirPanel(fullView);
         return fullView;
 	}
