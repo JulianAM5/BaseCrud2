@@ -39,7 +39,7 @@ public class FullViewDireccion extends VBox {
 
         HBox top = new HBox();
 
-        Label nombreLabel = new Label();
+        Label nombreLabel = new Label(direccion.getDireccion());
         Button editarNombre = new Button("Editar");
 
         Button cerrarButton = new Button("\u274C");
