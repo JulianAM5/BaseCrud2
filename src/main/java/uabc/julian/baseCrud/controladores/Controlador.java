@@ -22,32 +22,30 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
 	@Override
 	public Persona leerPersona(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerPersona'");
+        Persona persona = new Persona(1, "", null, null);
+        return persona;
 	}
 
 	@Override
 	public Direccion leerDireccion(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerDireccion'");
+        Direccion direccion = new Direccion(1, "");
+        return direccion;
 	}
 
 	@Override
 	public Telefono leerTelefono(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerTelefono'");
+        Telefono telefono = new Telefono(1, 1, "");
+        return telefono;
 	}
 
 	@Override
 	public boolean agregarPersona(Persona persona) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'agregarPersona'");
+        return true;
 	}
 
 	@Override
 	public boolean agregarDireccion(Direccion direccion) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'agregarDireccion'");
+        return true;
 	}
 
 	@Override
@@ -128,37 +126,38 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
 	@Override
 	public ArrayList<Persona> leerPersonasAsignadasADireccion(int direccionId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerPersonasAsignadasADireccion'");
+        return new ArrayList<>();
 	}
 
 	@Override
 	public ArrayList<Direccion> leerDireccionesAsignadasAPersona(int personaId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerDireccionesAsignadasAPersona'");
+        return new ArrayList<>();
 	}
 
 	@Override
 	public ArrayList<Telefono> leerTelefonosAsignadosAPersona(int personaId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerTelefonosAsignadosAPersona'");
+        return new ArrayList<>();
 	}
 
 	@Override
 	public ArrayList<Persona> leerPersonas() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerPersonas'");
+        ArrayList<Persona> personas = new ArrayList<>();
+        personas.add(new Persona(2, "Julian", null, null));
+        personas.add(new Persona(2, "Julian", null, null));
+        personas.add(new Persona(2, "Julian", null, null));
+        personas.add(new Persona(2, "Julian", null, null));
+        personas.add(new Persona(2, "Julian", null, null));
+
+        return personas;
 	}
 
 	@Override
 	public ArrayList<Direccion> leerDirecciones() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerDirecciones'");
+        return new ArrayList<>();
 	}
 
 	@Override
 	public ArrayList<Telefono> leerTelefonos() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'leerTelefonos'");
+        return new ArrayList<>();
 	}
 }
