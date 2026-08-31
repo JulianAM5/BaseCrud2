@@ -10,7 +10,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.data.Direccion;
-import uabc.julian.baseCrud.data.direccion;
 
 /**
  * DireccionesView

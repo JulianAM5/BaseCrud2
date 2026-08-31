@@ -9,27 +9,21 @@ import uabc.julian.baseCrud.Controlador;
  */
 public class MainTabs extends TabPane {
 
-    private Controlador controlador;
+    private Creador creador;
 
-    public MainTabs(Controlador controlador) {
-        this.controlador = controlador;
-
+    public MainTabs(Creador creador) {
+        this.creador = creador;
         setTabs();
     }
 
-    private void setTabs() {
-        Preview previewPersonas = new Preview(controlador);
-        Preview previewDirecciones = new Preview(controlador);
-        previewPersonas.cargarPersonas();
-        previewDirecciones.cargarDirecciones();
-
+    private void setTabs() {       
         Tab tabPersonas = new Tab();
         tabPersonas.setText("Personas");
-        tabPersonas.setContent(previewPersonas);
+        tabPersonas.setContent(creador.crearPreviewPersonasPanel());
 
         Tab tabDirecciones = new Tab();
         tabDirecciones.setText("Direcciones");
-        tabDirecciones.setContent(previewDirecciones);
+        tabDirecciones.setContent(creador.crearPreviewDireccionesPanel());
 
         tabPersonas.setClosable(false);
         tabDirecciones.setClosable(false);
