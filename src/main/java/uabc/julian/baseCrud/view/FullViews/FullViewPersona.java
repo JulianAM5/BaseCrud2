@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import uabc.julian.baseCrud.controladores.Lector;
+import uabc.julian.baseCrud.controladores.NavegacionUI;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
@@ -22,11 +23,13 @@ public class FullViewPersona extends VBox {
     private Persona persona;
     private Lector lector;
     private Creador creador;
+    private NavegacionUI navegacion;
 
-    public FullViewPersona(Persona persona, Lector lector, Creador creador) {
+    public FullViewPersona(Persona persona, Lector lector, Creador creador, NavegacionUI navegacion) {
         this.persona = persona;
         this.lector = lector;
         this.creador = creador;
+        this.navegacion = navegacion;
 
         setLayout();
     }
@@ -50,6 +53,8 @@ public class FullViewPersona extends VBox {
         Label direccionesLabel = new Label("Direcciones");
         ScrollPane direccionesSPane = new ScrollPane(); 
         Button agregarDireccionButton = new Button("Agregar");
+
+        cerrarButton.setOnAction(e -> { navegacion.cerrarPanel(this); });
 
         nombreLabel.getStyleClass().add("custom-title");
         editarNombre.getStyleClass().add("custom-edit-smallButton");
