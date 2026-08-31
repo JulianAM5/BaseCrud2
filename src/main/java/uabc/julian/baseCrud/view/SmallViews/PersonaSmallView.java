@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import uabc.julian.baseCrud.data.Persona;
+import uabc.julian.baseCrud.view.Creador;
 
 /**
  * PersonaSmallView
@@ -12,9 +13,11 @@ public class PersonaSmallView extends HBox {
 
     private Persona persona;
     private boolean aceptarModificaciones;
+    private Creador creador;
 
-    public PersonaSmallView(Persona persona, boolean aceptarModificaciones) {
+    public PersonaSmallView(Persona persona, Creador creador, boolean aceptarModificaciones) {
         this.persona = persona;
+        this.creador = creador;
         this.aceptarModificaciones = aceptarModificaciones;
         setVista();
     }
@@ -41,11 +44,10 @@ public class PersonaSmallView extends HBox {
     }
 
     private void onModificar() {
-        
+        creador.crearFullViewPersonaPanel();
     }
 
     private void onEliminar() {
-
     }
 
     public void setAceptarModificaciones(boolean aceptarModificaciones) {

@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import uabc.julian.baseCrud.data.Telefono;
+import uabc.julian.baseCrud.view.Creador;
 
 /**
  * PersonaSmallView
@@ -11,10 +12,12 @@ import uabc.julian.baseCrud.data.Telefono;
 public class TelefonoSmallView extends HBox {
 
     private Telefono telefono;
+    private Creador creador;
     private boolean aceptarModificaciones;
 
-    public TelefonoSmallView(Telefono telefono, boolean aceptarModificaciones) {
+    public TelefonoSmallView(Telefono telefono, Creador creador, boolean aceptarModificaciones) {
         this.telefono = telefono;
+        this.creador = creador;
         this.aceptarModificaciones = aceptarModificaciones;
         setVista();
     }

@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import uabc.julian.baseCrud.data.Direccion;
+import uabc.julian.baseCrud.view.Creador;
 
 /**
  * PersonaSmallView
@@ -11,10 +12,12 @@ import uabc.julian.baseCrud.data.Direccion;
 public class DireccionSmallView extends HBox {
 
     private Direccion direccion;
+    private Creador creador;
     private boolean aceptarModificaciones;
 
-    public DireccionSmallView(Direccion direccion, boolean aceptarModificaciones) {
+    public DireccionSmallView(Direccion direccion, Creador creador, boolean aceptarModificaciones) {
         this.direccion = direccion;
+        this.creador = creador;
         this.aceptarModificaciones = aceptarModificaciones;
         setVista();
     }
@@ -41,7 +44,7 @@ public class DireccionSmallView extends HBox {
     }
 
     private void onModificar() {
-        
+        creador.crearFullViewDireccionesPanel();
     }
 
     private void onEliminar() {

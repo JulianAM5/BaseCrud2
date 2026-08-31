@@ -8,6 +8,8 @@ import uabc.julian.baseCrud.controladores.NavegacionUI;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
+import uabc.julian.baseCrud.view.ListViews.DireccionesView;
+import uabc.julian.baseCrud.view.ListViews.PersonasView;
 import uabc.julian.baseCrud.view.SmallViews.DireccionSmallView;
 import uabc.julian.baseCrud.view.SmallViews.PersonaSmallView;
 import uabc.julian.baseCrud.view.SmallViews.TelefonoSmallView;
@@ -45,13 +47,13 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearPreviewPersonasPanel() {
-        Pane pane = new PersonasView(lector);
+        Pane pane = new PersonasView(lector, this);
         return pane;
 	}
 
 	@Override
 	public Pane crearPreviewDireccionesPanel() {
-        Pane pane = new DireccionesView(lector);
+        Pane pane = new DireccionesView(lector, this);
         return pane;
 	}
 
@@ -74,16 +76,16 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearDireccionSmallView(Direccion direccion, boolean aceptarModificaciones) {
-        return new DireccionSmallView(direccion, aceptarModificaciones);
+        return new DireccionSmallView(direccion, this, aceptarModificaciones);
 	}
 
 	@Override
 	public Pane crearPersonaSmallView(Persona persona, boolean aceptarModificaciones) {
-        return new PersonaSmallView(persona, aceptarModificaciones);
+        return new PersonaSmallView(persona, this, aceptarModificaciones);
 	}
 
 	@Override
 	public Pane crearTelefonoSmallView(Telefono telefono, boolean aceptarModificaciones) {
-        return new TelefonoSmallView(telefono, aceptarModificaciones);
+        return new TelefonoSmallView(telefono, this, aceptarModificaciones);
 	}
 }

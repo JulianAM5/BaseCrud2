@@ -1,4 +1,4 @@
-jackage uabc.julian.baseCrud.view;
+package uabc.julian.baseCrud.view;
 
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Pane;
