@@ -20,12 +20,11 @@ public interface Repositorio {
     List<Direccion> consultarTodasDirecciones();
     Direccion consultarDireccion(int id);
 
-    List<Telefono> consultarTodosTelefonos();
     Telefono consultarTelefono(int id);
 
     List<Telefono> consultarTelefonosDePersona(int personaId);
     List<Direccion> consultarDireccionesDePersona(int personaId);
-    List<Persona> consultarPersonaEnDireccion(int direccionId);
+    List<Persona> consultarPersonasEnDireccion(int direccionId);
 
     boolean agregarPersona(Persona persona);
     boolean agregarTelefono(Telefono telefono);
