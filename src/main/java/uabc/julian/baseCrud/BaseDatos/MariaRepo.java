@@ -41,11 +41,11 @@ public class MariaRepo implements Repositorio {
 
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {   
+            if (rs.next()) {
                 String nombre = rs.getString("nombre");
                 rs.close();
                 ps.close();
-                return new Persona(id, nombre, null, null);
+                return new Persona(id, nombre, consultarDireccionesDePersona(id), consultarTelefonosDePersona(id));
             } else {
                 rs.close();
                 ps.close();
@@ -113,9 +113,29 @@ public class MariaRepo implements Repositorio {
 	}
 
 	@Override
-	public Telefono consultarTelefono(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'consultarTelefono'");
+	public Telefono consultarTelefono(int id) { 
+        try {
+            String sqlInstruccion = "SELECT * FROM Telefonos where id = ?";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int personaId = rs.getInt("personaId");
+                String numeroTelefonico = rs.getString("telefono");
+                rs.close();
+                ps.close();
+                return new Telefono(id, personaId, numeroTelefonico);
+            } else {
+                rs.close();
+                ps.close();
+                return null;
+            }
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;
+        }
 	}
 
     @Override
@@ -198,12 +218,32 @@ public class MariaRepo implements Repositorio {
 	public boolean agregarPersona(Persona persona) { 
         try {
             String sqlInstruccion = "INSERT INTO Personas (nombre) VALUES (?)";
-            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion, Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, persona.getNombre());
 
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                persona.setId(rs.getInt(1));
+            }
+
             ps.executeUpdate();
             ps.close();
+            
+            for (Direccion direccion : persona.getDirecciones()) {
+                if (consultarDireccion(direccion.getId()) != null) {
+                    asignarDireccionAPersona(persona.getId(), direccion.getId());
+                } else {
+                    agregarDireccion(direccion);
+                    asignarDireccionAPersona(persona.getId(), direccion.getId());
+                }
+            }
+            
+            for (Telefono telefono : persona.getTelefonos()) {
+                telefono.setPersonaId(persona.getId());
+                agregarTelefono(telefono);
+            }
+
             return true;
         } catch (SQLException se) {
             se.printStackTrace();

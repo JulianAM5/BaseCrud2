@@ -26,4 +26,8 @@ public class Telefono {
     public int getId() {
         return id;
     }
+
+    public void setPersonaId(int personaId) {
+        this.personaId = personaId;
+    }
 }
