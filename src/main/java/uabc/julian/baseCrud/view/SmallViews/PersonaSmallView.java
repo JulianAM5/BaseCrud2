@@ -3,6 +3,7 @@ package uabc.julian.baseCrud.view.SmallViews;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import uabc.julian.baseCrud.controladores.Escritor;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.view.Creador;
 
@@ -14,10 +15,12 @@ public class PersonaSmallView extends HBox {
     private Persona persona;
     private boolean aceptarModificaciones;
     private Creador creador;
+    private Escritor escritor;
 
-    public PersonaSmallView(Persona persona, Creador creador, boolean aceptarModificaciones) {
+    public PersonaSmallView(Persona persona, Creador creador, Escritor escritor, boolean aceptarModificaciones) {
         this.persona = persona;
         this.creador = creador;
+        this.escritor = escritor;
         this.aceptarModificaciones = aceptarModificaciones;
         setVista();
     }
@@ -48,6 +51,7 @@ public class PersonaSmallView extends HBox {
     }
 
     private void onEliminar() {
+        escritor.eliminarPersona(persona.getId());
     }
 
     public void setAceptarModificaciones(boolean aceptarModificaciones) {

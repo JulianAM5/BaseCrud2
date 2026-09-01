@@ -3,6 +3,7 @@ package uabc.julian.baseCrud.view.SmallViews;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import uabc.julian.baseCrud.controladores.Escritor;
 import uabc.julian.baseCrud.data.Telefono;
 import uabc.julian.baseCrud.view.Creador;
 
@@ -13,11 +14,13 @@ public class TelefonoSmallView extends HBox {
 
     private Telefono telefono;
     private Creador creador;
+    private Escritor escritor;
     private boolean aceptarModificaciones;
 
-    public TelefonoSmallView(Telefono telefono, Creador creador, boolean aceptarModificaciones) {
+    public TelefonoSmallView(Telefono telefono, Creador creador, Escritor escritor, boolean aceptarModificaciones) {
         this.telefono = telefono;
         this.creador = creador;
+        this.escritor = escritor;
         this.aceptarModificaciones = aceptarModificaciones;
         setVista();
     }
@@ -48,7 +51,7 @@ public class TelefonoSmallView extends HBox {
     }
 
     private void onEliminar() {
-
+        escritor.eliminarTelefono(telefono.getId());
     }
 
     public void setAceptarModificaciones(boolean aceptarModificaciones) {
