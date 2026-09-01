@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import uabc.julian.baseCrud.BaseDatos.MariaRepo;
 import uabc.julian.baseCrud.controladores.Controlador;
 import uabc.julian.baseCrud.view.CreadorPaneles;
 import uabc.julian.baseCrud.view.MainTabs;
@@ -18,7 +19,10 @@ public class App extends Application {
         StackPane root = new StackPane();
         root.getStyleClass().add("custom-background");
 
-        Controlador controlador = new Controlador(root);
+        MariaRepo repo = new MariaRepo(USER, PASSWORD);
+        repo.iniciarConexion();
+
+        Controlador controlador = new Controlador(repo, root);
         CreadorPaneles creador = new CreadorPaneles(controlador, controlador, controlador);
 
         root.getChildren().add(creador.crearTabsPanel());
