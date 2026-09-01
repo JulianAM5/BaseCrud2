@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.layout.Pane;
+import uabc.julian.baseCrud.BaseDatos.Repositorio;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.data.Telefono;
@@ -15,8 +16,9 @@ import uabc.julian.baseCrud.view.Creador;
 public class Controlador implements Escritor, Lector, NavegacionUI {
 
     private Pane root;
+    private Repositorio repositorio;
 
-    public Controlador(Pane root) {
+    public Controlador(Repositorio repositorio, Pane root) {
         this.root = root;
     }
 
@@ -40,18 +42,17 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
 	@Override
 	public boolean agregarPersona(Persona persona) {
-        return true;
+        return repositorio.agregarPersona(persona);
 	}
 
 	@Override
 	public boolean agregarDireccion(Direccion direccion) {
-        return true;
+        return repositorio.agregarDireccion(direccion);
 	}
 
 	@Override
 	public boolean agregarTelefono(Telefono telefono) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'agregarTelefono'");
+        return repositorio.agregarTelefono(telefono);
 	}
 
 	@Override
@@ -100,18 +101,6 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 	public boolean desasignarDireccionAPersona(int personaId, int direccionId) {
 		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException("Unimplemented method 'desasignarDireccionAPersona'");
-	}
-
-	@Override
-	public boolean asignarTelefonoAPersona(int personaId, int telefonoId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'asignarTelefonoAPersona'");
-	}
-
-	@Override
-	public boolean desasignarTelefonoAPersona(int personaId, int telefonoId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'desasignarTelefonoAPersona'");
 	}
 
 	@Override

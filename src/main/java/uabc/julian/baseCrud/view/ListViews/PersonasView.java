@@ -50,6 +50,7 @@ public class PersonasView extends VBox {
         VBox holder = new VBox();
 
         botonAgregar.setOnAction(e -> {
+            creador.crearAgregarPersonasPanel();
         });
 
         for (Persona persona : personas) {

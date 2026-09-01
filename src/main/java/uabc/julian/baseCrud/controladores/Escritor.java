@@ -22,6 +22,4 @@ public interface Escritor {
 
     boolean asignarDireccionAPersona(int personaId, int direccionId);
     boolean desasignarDireccionAPersona(int personaId, int direccionId);
-    boolean asignarTelefonoAPersona(int personaId, int telefonoId);
-    boolean desasignarTelefonoAPersona(int personaId, int telefonoId);
 }
