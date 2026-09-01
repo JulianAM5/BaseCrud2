@@ -164,4 +164,14 @@ public class Controlador implements Escritor, Lector, NavegacionUI, Subscriptor 
             }
         }
     }
+
+	@Override
+	public Pane getRoot() {
+        return root;
+	}
+
+	@Override
+	public void setRoot(Pane root) {
+        this.root = root;
+	}
 }

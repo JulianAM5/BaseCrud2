@@ -483,4 +483,10 @@ public class MariaRepo implements Repositorio {
             return false;
         }
 	}
+
+	@Override
+	public void setCredenciales(String usuario, String contraseña) {
+        this.USUARIO = usuario;
+        this.CONTRASEÑA = contraseña;
+	}
 }

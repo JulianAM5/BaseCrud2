@@ -31,8 +31,8 @@ public class DireccionSmallView extends HBox {
 
         Label dato = new Label(direccion.getDireccion());
 
-        Button botonModificar = new Button();
-        Button botonEliminar = new Button(); 
+        Button botonModificar = new Button("Editar");
+        Button botonEliminar = new Button("\u274C"); 
         
         botonModificar.setDisable(!aceptarModificaciones);
 

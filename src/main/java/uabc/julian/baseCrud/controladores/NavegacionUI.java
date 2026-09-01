@@ -8,4 +8,7 @@ import javafx.scene.layout.Pane;
 public interface NavegacionUI {
     void abrirPanel(Pane pane);
     void cerrarPanel(Pane pane);
+
+    Pane getRoot();
+    void setRoot(Pane root);
 }

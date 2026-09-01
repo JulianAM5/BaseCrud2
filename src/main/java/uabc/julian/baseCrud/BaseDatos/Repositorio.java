@@ -41,4 +41,6 @@ public interface Repositorio {
     boolean eliminarPersona(int id);
     boolean eliminarDireccion(int id);
     boolean eliminarTelefono(int id);
+
+    void setCredenciales(String usuario, String contraseña);
 }
