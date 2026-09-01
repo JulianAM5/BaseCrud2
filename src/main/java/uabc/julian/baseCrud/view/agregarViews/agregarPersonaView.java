@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import uabc.julian.baseCrud.controladores.Escritor;
+import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.controladores.NavegacionUI;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
@@ -37,7 +38,8 @@ public class agregarPersonaView extends VBox {
         TextField fieldTelefono = new TextField();
         Button telefonoAñadir = new Button("Añadir");
 
-        ChoiceBox<Direccion> direccionesChoice = new ChoiceBox<>();
+        Label direccion = new Label("Direccion");
+        TextField fieldDireccion = new TextField();
         Button direccionesAñadir = new Button("Añadir");
         
         HBox botones = new HBox();
@@ -48,16 +50,17 @@ public class agregarPersonaView extends VBox {
         botones.getChildren().addAll(confirmar, cancelar);
 
         telefonoAñadir.setOnAction(e -> {
-            if (fieldTelefono.getText().isEmpty()) { return; }
+            if (fieldTelefono.getText().isBlank()) { return; }
 
             persona.getTelefonos().add(new Telefono(-1, -1, fieldTelefono.getText()));
+            fieldTelefono.clear();
         });
 
         direccionesAñadir.setOnAction(e -> {
-            if (direccionesChoice.getValue() == null) { return; }
+            if (fieldDireccion.getText().isBlank()) { return; }
 
-            persona.getDirecciones().add(direccionesChoice.getValue());
-
+            persona.getDirecciones().add(new Direccion(-1, fieldDireccion.getText()));
+            fieldDireccion.clear();
         });
 
         confirmar.setOnAction(e -> {
@@ -65,7 +68,11 @@ public class agregarPersonaView extends VBox {
 
             persona.setNombre(fieldNombre.getText());
 
-            escritor.agregarPersona(persona);
+            if (!escritor.agregarPersona(persona)) {
+                System.out.println("NO SE PUDO AGREGAR");
+            } else {
+                navegacion.cerrarPanel(this);
+            }
         });
 
         cancelar.setOnAction(e -> {
@@ -74,11 +81,11 @@ public class agregarPersonaView extends VBox {
 
         fieldNombre.getStyleClass().add("custom-field");
         fieldTelefono.getStyleClass().add("custom-field");
-        direccionesChoice.getStyleClass().add("custom-field");
+        fieldDireccion.getStyleClass().add("custom-field");
         getStyleClass().add("custom-edit-window");
         confirmar.getStyleClass().add("custom-confirm-button");
         cancelar.getStyleClass().add("custom-cancel-button");
 
-        getChildren().addAll(nombre, fieldNombre, telefono, fieldTelefono, telefonoAñadir, direccionesChoice, direccionesAñadir, botones);
+        getChildren().addAll(nombre, fieldNombre, telefono, fieldTelefono, telefonoAñadir, direccion, fieldDireccion, direccionesAñadir, botones);
     }
 }
