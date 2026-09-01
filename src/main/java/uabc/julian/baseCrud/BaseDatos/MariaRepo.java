@@ -312,22 +312,52 @@ public class MariaRepo implements Repositorio {
 	}
 
 	@Override
-	public boolean eliminarPersona(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarPersona'");
-	}
+    public boolean eliminarPersona(int id) {
+        try {
+            String sqlInstruccion = "DELETE FROM Personas WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
 
 	@Override
-	public boolean eliminarDireccion(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarDireccion'");
-	}
+    public boolean eliminarDireccion(int id) {
+        try {
+            String sqlInstruccion = "DELETE FROM Direcciones WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
 
 	@Override
-	public boolean eliminarTelefono(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarTelefono'");
-	}
+    public boolean eliminarTelefono(int id) {
+        try {
+            String sqlInstruccion = "DELETE FROM Telefonos WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+    }
 
 	@Override
     public boolean iniciarConexion() {
