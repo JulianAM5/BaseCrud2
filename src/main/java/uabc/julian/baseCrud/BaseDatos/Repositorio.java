@@ -35,10 +35,8 @@ public interface Repositorio {
     boolean modificarTelefono(Telefono telefono);
 
     boolean asignarDireccionAPersona(int personaId, int direccionId);
-    boolean asignarTelefonoAPersona(int personaId, int telefonoId);
 
     boolean desasignarDireccionDePersona(int personaId, int direccionId);
-    boolean desasignarTelefonoDePersona(int personaId, int direccionId);
 
     boolean eliminarPersona(int id);
     boolean eliminarDireccion(int id);

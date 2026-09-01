@@ -283,12 +283,6 @@ public class MariaRepo implements Repositorio {
     }
 
 	@Override
-	public boolean asignarTelefonoAPersona(int personaId, int telefonoId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'asignarTelefonoAPersona'");
-	}
-
-	@Override
     public boolean desasignarDireccionDePersona(int personaId, int direccionId) {
         try {
             String sqlInstruccion = "DELETE FROM Personas_Direcciones WHERE personaId = ?, direccionId = ?";
@@ -304,12 +298,6 @@ public class MariaRepo implements Repositorio {
             return false;
         }
     }
-
-	@Override
-	public boolean desasignarTelefonoDePersona(int personaId, int direccionId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'desasignarTelefonoDePersona'");
-	}
 
 	@Override
     public boolean eliminarPersona(int id) {
