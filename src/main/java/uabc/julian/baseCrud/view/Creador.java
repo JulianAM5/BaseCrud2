@@ -21,4 +21,5 @@ public interface Creador {
     Pane crearPreviewDireccionesPanel();
     Pane crearAgregarPersonasPanel();
     Pane crearAgregarDireccionesPanel();
+    Pane crearAgregarTelefonoPanel(Persona persona);
 }

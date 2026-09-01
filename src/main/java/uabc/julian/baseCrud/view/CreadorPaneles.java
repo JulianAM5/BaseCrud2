@@ -15,6 +15,8 @@ import uabc.julian.baseCrud.view.ListViews.PersonasView;
 import uabc.julian.baseCrud.view.SmallViews.DireccionSmallView;
 import uabc.julian.baseCrud.view.SmallViews.PersonaSmallView;
 import uabc.julian.baseCrud.view.SmallViews.TelefonoSmallView;
+import uabc.julian.baseCrud.view.agregarViews.AgregarDireccionView;
+import uabc.julian.baseCrud.view.agregarViews.AgregarTelefonoView;
 import uabc.julian.baseCrud.view.agregarViews.agregarPersonaView;
 
 /**
@@ -72,8 +74,9 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearAgregarDireccionesPanel() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'crearAgregarDireccionesPanel'");
+        Pane pane = new AgregarDireccionView(escritor, navegacion);
+        navegacion.abrirPanel(pane);
+        return pane;
 	}
 
 	@Override
@@ -94,5 +97,12 @@ public class CreadorPaneles implements Creador{
 	@Override
 	public Pane crearTelefonoSmallView(Telefono telefono, boolean aceptarModificaciones) {
         return new TelefonoSmallView(telefono, this, aceptarModificaciones);
+	}
+
+	@Override
+	public Pane crearAgregarTelefonoPanel(Persona persona) {
+        Pane pane = new AgregarTelefonoView(escritor, navegacion, persona);
+        navegacion.abrirPanel(pane);
+        return pane;
 	}
 }
