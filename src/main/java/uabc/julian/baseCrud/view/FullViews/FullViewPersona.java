@@ -6,8 +6,12 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import uabc.julian.baseCrud.Eventos.Listener;
+import uabc.julian.baseCrud.controladores.Escritor;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.controladores.NavegacionUI;
 import uabc.julian.baseCrud.data.Direccion;
@@ -18,15 +22,17 @@ import uabc.julian.baseCrud.view.Creador;
 /**
  * FullViewPersona
  */
-public class FullViewPersona extends VBox {
+public class FullViewPersona extends VBox implements Listener {
 
     private Persona persona;
     private Lector lector;
+    private Escritor escritor;
     private Creador creador;
     private NavegacionUI navegacion;
 
-    public FullViewPersona(Persona persona, Lector lector, Creador creador, NavegacionUI navegacion) {
+    public FullViewPersona(Persona persona, Lector lector, Escritor escritor, Creador creador, NavegacionUI navegacion) {
         this.persona = persona;
+        this.escritor = escritor;
         this.lector = lector;
         this.creador = creador;
         this.navegacion = navegacion;
@@ -39,7 +45,7 @@ public class FullViewPersona extends VBox {
 
         HBox top = new HBox();
 
-        Label nombreLabel = new Label(persona.getNombre());
+        TextField nombreLabel = new TextField(persona.getNombre());
         Button editarNombre = new Button("Editar");
 
         Button cerrarButton = new Button("\u274C");
@@ -63,10 +69,17 @@ public class FullViewPersona extends VBox {
             creador.crearAgregarDireccionesPanel();
         });
 
+        editarNombre.setOnAction(e -> {
+            if(nombreLabel.getText().isBlank()) { return; }
+
+            persona.setNombre(nombreLabel.getText());
+            escritor.modificarPersona(persona);
+        });
+
         setTelefonos(telefonosSPane);
         setDirecciones(direccionesSPane);
 
-        nombreLabel.getStyleClass().add("custom-title");
+        nombreLabel.getStyleClass().add("custom-title-fullView");
         editarNombre.getStyleClass().add("custom-edit-smallButton");
         telefonosLabel.getStyleClass().add("custom-title");
         direccionesLabel.getStyleClass().add("custom-title");
@@ -101,11 +114,17 @@ public class FullViewPersona extends VBox {
         VBox holder = new VBox();
 
         for (Direccion direccion : persona.getDirecciones()) {
-            holder.getChildren().add(creador.crearDireccionSmallView(direccion, true));
+            holder.getChildren().add(creador.crearDireccionSmallView(direccion, false));
         }
 
         holder.setSpacing(3);
         pane.setFitToWidth(true);
         pane.setContent(holder);
     }
+
+	@Override
+	public void actualizar() {
+        persona = lector.leerPersona(persona.getId());
+        setLayout();
+	}
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import uabc.julian.baseCrud.Eventos.Listener;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.view.Creador;
@@ -15,7 +16,7 @@ import uabc.julian.baseCrud.view.Creador;
 /**
  * DireccionesView
  */
-public class DireccionesView extends VBox {
+public class DireccionesView extends VBox implements Listener {
     private Lector lector;
     private Creador creador;
 
@@ -60,4 +61,9 @@ public class DireccionesView extends VBox {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(holder);
     }
+
+	@Override
+	public void actualizar() {
+        setLayout();
+	}
 }

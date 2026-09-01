@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import uabc.julian.baseCrud.controladores.Escritor;
 import uabc.julian.baseCrud.data.Direccion;
+import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.view.Creador;
 
 /**

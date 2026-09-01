@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import uabc.julian.baseCrud.Eventos.Listener;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.data.Persona;
 import uabc.julian.baseCrud.view.Creador;
@@ -15,7 +16,7 @@ import uabc.julian.baseCrud.view.Creador;
 /**
  * PersonasView
  */
-public class PersonasView extends VBox {
+public class PersonasView extends VBox implements Listener {
 
     private Lector lector;
     private Creador creador;
@@ -61,4 +62,9 @@ public class PersonasView extends VBox {
         scrollPane.setFitToWidth(true);
         scrollPane.setContent(holder);
     }
+
+	@Override
+	public void actualizar() {
+        setLayout();
+	}
 }

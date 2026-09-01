@@ -7,8 +7,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import uabc.julian.baseCrud.Eventos.Listener;
+import uabc.julian.baseCrud.controladores.Escritor;
 import uabc.julian.baseCrud.controladores.Lector;
 import uabc.julian.baseCrud.controladores.NavegacionUI;
 import uabc.julian.baseCrud.data.Direccion;
@@ -18,16 +21,18 @@ import uabc.julian.baseCrud.view.SmallViews.PersonaSmallView;
 /**
  * FullViewDireccion
  */
-public class FullViewDireccion extends VBox {
+public class FullViewDireccion extends VBox implements Listener {
 
     private Direccion direccion;
     private Lector lector;
+    private Escritor escritor;
     private Creador creador;
     private NavegacionUI navegacion;
 
-    public FullViewDireccion(Direccion direccion, Lector lector, Creador creador, NavegacionUI navegacion) {
+    public FullViewDireccion(Direccion direccion, Lector lector, Escritor escritor, Creador creador, NavegacionUI navegacion) {
         this.creador = creador;
         this.lector = lector;
+        this.escritor = escritor;
         this.direccion = direccion;
         this.navegacion = navegacion;
 
@@ -39,7 +44,7 @@ public class FullViewDireccion extends VBox {
 
         HBox top = new HBox();
 
-        Label nombreLabel = new Label(direccion.getDireccion());
+        TextField nombreLabel = new TextField(direccion.getDireccion());
         Button editarNombre = new Button("Editar");
 
         Button cerrarButton = new Button("\u274C");
@@ -51,10 +56,16 @@ public class FullViewDireccion extends VBox {
         Button agregarPersonaButton = new Button("Agregar");
 
         cerrarButton.setOnAction(e -> { navegacion.cerrarPanel(this); });
+        editarNombre.setOnAction(e -> {
+            if (nombreLabel.getText().isBlank()) { return; }
+
+            direccion.setDireccion(nombreLabel.getText());
+            escritor.modificarDireccion(direccion);
+        });
 
         setPersonas(personasSPane);
 
-        nombreLabel.getStyleClass().add("custom-title");
+        nombreLabel.getStyleClass().add("custom-title-fullView");
         editarNombre.getStyleClass().add("custom-edit-smallButton");
         personasLabel.getStyleClass().add("custom-title");
         agregarPersonaButton.getStyleClass().add("custom-add-button");
@@ -81,4 +92,10 @@ public class FullViewDireccion extends VBox {
         pane.setFitToWidth(true);
         pane.setContent(holder);
     }
+
+	@Override
+	public void actualizar() {
+        direccion = lector.leerDireccion(direccion.getId());
+        setLayout();
+	}
 }

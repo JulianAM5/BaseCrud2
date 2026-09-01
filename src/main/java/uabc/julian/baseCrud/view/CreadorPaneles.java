@@ -41,14 +41,14 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearFullViewPersonaPanel(Persona persona) {
-        Pane fullView = new FullViewPersona(persona, lector, this, navegacion);
+        Pane fullView = new FullViewPersona(persona, lector, escritor, this, navegacion);
         navegacion.abrirPanel(fullView);
         return fullView;
 	}
 
 	@Override
 	public Pane crearFullViewDireccionesPanel(Direccion direccion) {
-        Pane fullView = new FullViewDireccion(direccion, lector, this, navegacion);
+        Pane fullView = new FullViewDireccion(direccion, lector, escritor, this, navegacion);
         navegacion.abrirPanel(fullView);
         return fullView;
 	}
@@ -86,17 +86,17 @@ public class CreadorPaneles implements Creador{
 
 	@Override
 	public Pane crearDireccionSmallView(Direccion direccion, boolean aceptarModificaciones) {
-        return new DireccionSmallView(direccion, this, aceptarModificaciones);
+        return new DireccionSmallView(direccion, this, escritor, aceptarModificaciones);
 	}
 
 	@Override
 	public Pane crearPersonaSmallView(Persona persona, boolean aceptarModificaciones) {
-        return new PersonaSmallView(persona, this, aceptarModificaciones);
+        return new PersonaSmallView(persona, this, escritor, aceptarModificaciones);
 	}
 
 	@Override
 	public Pane crearTelefonoSmallView(Telefono telefono, boolean aceptarModificaciones) {
-        return new TelefonoSmallView(telefono, this, aceptarModificaciones);
+        return new TelefonoSmallView(telefono, this, escritor, aceptarModificaciones);
 	}
 
 	@Override

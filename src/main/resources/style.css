@@ -109,6 +109,13 @@
     -fx-font-size: 20px;
 }
 
+.custom-title-fullView {
+    -fx-pref-width: 550px;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-background-color: transparent;
+}
+
 .vbox {
     -fx-background-color: linear-gradient(#F5F5F5, #F0F2F5);
 

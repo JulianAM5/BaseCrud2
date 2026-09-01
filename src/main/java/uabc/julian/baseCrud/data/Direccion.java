@@ -20,4 +20,8 @@ public class Direccion {
     public int getId() {
         return id;
     }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 }
