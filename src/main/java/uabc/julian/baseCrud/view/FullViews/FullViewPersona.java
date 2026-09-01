@@ -30,7 +30,7 @@ public class FullViewPersona extends VBox {
         this.lector = lector;
         this.creador = creador;
         this.navegacion = navegacion;
-
+        
         setLayout();
     }
 
@@ -55,6 +55,16 @@ public class FullViewPersona extends VBox {
         Button agregarDireccionButton = new Button("Agregar");
 
         cerrarButton.setOnAction(e -> { navegacion.cerrarPanel(this); });
+        agregarTelefonoButton.setOnAction(e -> {
+            creador.crearAgregarTelefonoPanel(persona);
+        });
+
+        agregarDireccionButton.setOnAction(e -> {
+            creador.crearAgregarDireccionesPanel();
+        });
+
+        setTelefonos(telefonosSPane);
+        setDirecciones(direccionesSPane);
 
         nombreLabel.getStyleClass().add("custom-title");
         editarNombre.getStyleClass().add("custom-edit-smallButton");
@@ -87,7 +97,7 @@ public class FullViewPersona extends VBox {
         pane.setContent(holder);
     }
 
-    private void setDirecciones(ScrollPane pane, int personaId) {
+    private void setDirecciones(ScrollPane pane) {
         VBox holder = new VBox();
 
         for (Direccion direccion : persona.getDirecciones()) {

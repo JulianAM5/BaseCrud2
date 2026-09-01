@@ -12,7 +12,6 @@ import uabc.julian.baseCrud.data.Telefono;
 public interface Lector {
     ArrayList<Persona> leerPersonas();
     ArrayList<Direccion> leerDirecciones();
-    ArrayList<Telefono> leerTelefonos();
 
     ArrayList<Persona> leerPersonasAsignadasADireccion(int direccionId);
     ArrayList<Direccion> leerDireccionesAsignadasAPersona(int personaId);

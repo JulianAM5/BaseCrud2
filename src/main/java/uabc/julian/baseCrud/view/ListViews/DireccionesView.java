@@ -49,6 +49,7 @@ public class DireccionesView extends VBox {
         VBox holder = new VBox();
 
         botonAgregar.setOnAction(e -> {
+            creador.crearAgregarDireccionesPanel();
         });
 
         for (Direccion direccion : direcciones) {

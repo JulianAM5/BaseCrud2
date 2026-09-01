@@ -17,13 +17,13 @@ public class Persona {
         this.nombre = nombre;
 
         if (direcciones == null) {
-            direcciones = new ArrayList();
+            this.direcciones = new ArrayList();
         } else {
             this.direcciones = direcciones;
         }
 
         if (telefonos == null) {
-            telefonos = new ArrayList();
+            this.telefonos = new ArrayList();
         } else {
             this.telefonos = telefonos;
         }

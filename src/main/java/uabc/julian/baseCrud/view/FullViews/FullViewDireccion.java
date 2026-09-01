@@ -52,6 +52,8 @@ public class FullViewDireccion extends VBox {
 
         cerrarButton.setOnAction(e -> { navegacion.cerrarPanel(this); });
 
+        setPersonas(personasSPane);
+
         nombreLabel.getStyleClass().add("custom-title");
         editarNombre.getStyleClass().add("custom-edit-smallButton");
         personasLabel.getStyleClass().add("custom-title");
@@ -67,7 +69,7 @@ public class FullViewDireccion extends VBox {
         setPadding(new Insets(10));
     }
 
-    private void setPersonas(ScrollPane pane, int direccionId) {
+    private void setPersonas(ScrollPane pane) {
         ArrayList<Persona> personas = lector.leerPersonasAsignadasADireccion(direccion.getId());
         VBox holder = new VBox();
 
