@@ -1,6 +1,6 @@
 package uabc.julian.baseCrud.BaseDatos;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import uabc.julian.baseCrud.data.Direccion;
 import uabc.julian.baseCrud.data.Persona;
@@ -14,21 +14,21 @@ public interface Repositorio {
     boolean iniciarConexion();
     boolean cerrarConexion();
 
-    List<Persona> consultarTodasPersonas();
+    ArrayList<Persona> consultarTodasPersonas();
     Persona consultarPersona(int id);
 
-    List<Direccion> consultarTodasDirecciones();
+    ArrayList<Direccion> consultarTodasDirecciones();
     Direccion consultarDireccion(int id);
 
     Telefono consultarTelefono(int id);
 
-    List<Telefono> consultarTelefonosDePersona(int personaId);
-    List<Direccion> consultarDireccionesDePersona(int personaId);
-    List<Persona> consultarPersonasEnDireccion(int direccionId);
+    ArrayList<Telefono> consultarTelefonosDePersona(int personaId);
+    ArrayList<Direccion> consultarDireccionesDePersona(int personaId);
+    ArrayList<Persona> consultarPersonasEnDireccion(int direccionId);
 
     boolean agregarPersona(Persona persona);
     boolean agregarTelefono(Telefono telefono);
-    boolean agregarDireccion(Direccion direccion);
+    int agregarDireccion(Direccion direccion);
 
     boolean modificarPersona(Persona persona);
     boolean modificarDireccion(Direccion direccion);

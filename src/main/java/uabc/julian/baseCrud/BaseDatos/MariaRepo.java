@@ -24,13 +24,36 @@ public class MariaRepo implements Repositorio {
     private Connection connection;
 
     public MariaRepo(String usuario, String contraseña) {
-        
+        USUARIO = usuario;
+        CONTRASEÑA = contraseña;
     }
 
 	@Override
-	public ArrayList<Persona> consultarTodasPersonas() {
-		throw new UnsupportedOperationException("Unimplemented method 'consultarPersona'");
-	}
+    public ArrayList<Persona> consultarTodasPersonas() {
+        try {
+            ArrayList<Persona> personas = new ArrayList<>();
+            stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id FROM Personas");
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+
+                personas.add(consultarPersona(id));
+            }
+
+            rs.close();
+            return personas;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
 
     @Override
     public Persona consultarPersona(int id) {
@@ -143,7 +166,7 @@ public class MariaRepo implements Repositorio {
         try {
             ArrayList<Telefono> telefonos = new ArrayList<>();
 
-            String sqlInstruccion = "SELECT telefono FROM Telefonos where personaId = ?";
+            String sqlInstruccion = "SELECT id, telefono FROM Telefonos where personaId = ?";
             PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
 
             ps.setInt(1, personaId);
@@ -222,20 +245,21 @@ public class MariaRepo implements Repositorio {
 
             ps.setString(1, persona.getNombre());
 
+            ps.executeUpdate();
+
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 persona.setId(rs.getInt(1));
             }
 
-            ps.executeUpdate();
             ps.close();
             
             for (Direccion direccion : persona.getDirecciones()) {
                 if (consultarDireccion(direccion.getId()) != null) {
                     asignarDireccionAPersona(persona.getId(), direccion.getId());
                 } else {
-                    agregarDireccion(direccion);
-                    asignarDireccionAPersona(persona.getId(), direccion.getId());
+                    int direccionId = agregarDireccion(direccion);
+                    asignarDireccionAPersona(persona.getId(), direccionId);
                 }
             }
             
@@ -270,12 +294,55 @@ public class MariaRepo implements Repositorio {
     }
 
 	@Override
-    public boolean agregarDireccion(Direccion direccion) {
+    public int agregarDireccion(Direccion direccion) {
         try {
             String sqlInstruccion = "INSERT INTO Direcciones (direccion) VALUES (?)";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, direccion.getDireccion());
+
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            int id = -1;
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+
+            ps.close();
+            return id;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return -1;
+        }
+    }
+
+	@Override
+    public boolean modificarPersona(Persona persona) {
+        try {
+            String sqlInstruccion = "UPDATE Personas SET nombre = ? WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
+
+            ps.setString(1, persona.getNombre());
+            ps.setInt(2, persona.getId());
+
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }
+	}
+
+	@Override
+    public boolean modificarDireccion(Direccion direccion) {
+        try {
+            String sqlInstruccion = "UPDATE Direcciones SET direccion = ? WHERE id = ?";
             PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
 
             ps.setString(1, direccion.getDireccion());
+            ps.setInt(2, direccion.getId());
 
             ps.executeUpdate();
             ps.close();
@@ -287,22 +354,22 @@ public class MariaRepo implements Repositorio {
     }
 
 	@Override
-	public boolean modificarPersona(Persona persona) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'modificarPersona'");
-	}
+    public boolean modificarTelefono(Telefono telefono) {
+        try {
+            String sqlInstruccion = "UPDATE Telefonos SET telefono = ? WHERE personaId = ?";
+            PreparedStatement ps = connection.prepareStatement(sqlInstruccion);
 
-	@Override
-	public boolean modificarDireccion(Direccion direccion) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'modificarDireccion'");
-	}
+            ps.setString(1, telefono.getNumeroTelefonico());
+            ps.setInt(2, telefono.getPersonaId());
 
-	@Override
-	public boolean modificarTelefono(Telefono telefono) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'modificarTelefono'");
-	}
+            ps.executeUpdate();
+            ps.close();
+            return true;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return false;
+        }       
+    }
 
 	@Override
 	public boolean asignarDireccionAPersona(int personaId, int direccionId) {
