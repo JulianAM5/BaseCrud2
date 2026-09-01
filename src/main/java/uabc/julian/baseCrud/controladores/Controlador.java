@@ -20,6 +20,7 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
     public Controlador(Repositorio repositorio, Pane root) {
         this.root = root;
+        this.repositorio = repositorio;
     }
 
 	@Override
@@ -42,16 +43,24 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
 	@Override
 	public boolean agregarPersona(Persona persona) {
+        if (persona.getNombre().isBlank()) { return false; }
+        if (persona.getTelefonos().isEmpty()) { return false; }
+        if (persona.getDirecciones().isEmpty()) { return false; }
+
         return repositorio.agregarPersona(persona);
 	}
 
 	@Override
 	public boolean agregarDireccion(Direccion direccion) {
-        return repositorio.agregarDireccion(direccion);
+        if (direccion.getDireccion().isBlank()) { return false; }
+
+        return repositorio.agregarDireccion(direccion) > 0;
 	}
 
 	@Override
 	public boolean agregarTelefono(Telefono telefono) {
+        if (telefono.getNumeroTelefonico().isBlank()) { return false; }
+
         return repositorio.agregarTelefono(telefono);
 	}
 
@@ -75,32 +84,27 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
 	@Override
 	public boolean eliminarPersona(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarPersona'");
+        return repositorio.eliminarPersona(id);
 	}
 
 	@Override
 	public boolean eliminarDireccion(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarDireccion'");
+        return repositorio.eliminarDireccion(id);
 	}
 
 	@Override
 	public boolean eliminarTelefono(int id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'eliminarTelefono'");
+        return repositorio.eliminarTelefono(id);
 	}
 
 	@Override
 	public boolean asignarDireccionAPersona(int personaId, int direccionId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'asignarDireccionAPersona'");
+        return repositorio.asignarDireccionAPersona(personaId, direccionId);
 	}
 
 	@Override
 	public boolean desasignarDireccionAPersona(int personaId, int direccionId) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'desasignarDireccionAPersona'");
+        return repositorio.desasignarDireccionDePersona(personaId, direccionId);
 	}
 
 	@Override
@@ -115,38 +119,26 @@ public class Controlador implements Escritor, Lector, NavegacionUI {
 
 	@Override
 	public ArrayList<Persona> leerPersonasAsignadasADireccion(int direccionId) {
-        return new ArrayList<>();
+        return repositorio.consultarPersonasEnDireccion(direccionId);
 	}
 
 	@Override
 	public ArrayList<Direccion> leerDireccionesAsignadasAPersona(int personaId) {
-        return new ArrayList<>();
+        return repositorio.consultarDireccionesDePersona(personaId);
 	}
 
 	@Override
 	public ArrayList<Telefono> leerTelefonosAsignadosAPersona(int personaId) {
-        return new ArrayList<>();
+        return repositorio.consultarTelefonosDePersona(personaId);
 	}
 
 	@Override
 	public ArrayList<Persona> leerPersonas() {
-        ArrayList<Persona> personas = new ArrayList<>();
-        personas.add(new Persona(2, "Julian", null, null));
-        personas.add(new Persona(2, "Julian", null, null));
-        personas.add(new Persona(2, "Julian", null, null));
-        personas.add(new Persona(2, "Julian", null, null));
-        personas.add(new Persona(2, "Julian", null, null));
-
-        return personas;
+        return repositorio.consultarTodasPersonas();
 	}
 
 	@Override
 	public ArrayList<Direccion> leerDirecciones() {
-        return new ArrayList<>();
-	}
-
-	@Override
-	public ArrayList<Telefono> leerTelefonos() {
-        return new ArrayList<>();
+        return repositorio.consultarTodasDirecciones();
 	}
 }
